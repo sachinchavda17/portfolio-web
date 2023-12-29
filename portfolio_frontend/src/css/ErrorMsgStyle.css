@@ -1,0 +1,32 @@
+.error-full {
+    background-color: #fcdfe8;
+    border: 1px solid #f99;
+    color: #d40011;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .5rem ;
+  }
+  
+  .error-msg strong {
+    font-weight: bold;
+  }
+  
+  .error-msg span {
+    display: block;
+    margin-top: 0.25rem;
+  }
+  
+  .error-msg .error-close {
+    fill: #d40011;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  
+  .error-msg .error-close:hover {
+    cursor: pointer;
+  }
+  

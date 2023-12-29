@@ -1,0 +1,145 @@
+label {
+    color: #fff;
+}
+
+.heading-name {
+    color: #fff;
+    text-align: center;
+    font-size: 2rem;
+}
+.heading-name span{
+    padding: 0 1rem ;
+    padding-bottom: .5rem ;
+    border-bottom: 2px solid white;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem;
+    margin: auto;
+    max-width: 600px;
+}
+
+.login-form button {
+    margin-top: .5rem;
+}
+
+.login-form label {
+    margin-bottom: 0.5rem;
+}
+
+.login-form input,
+textarea {
+    margin-bottom: 1rem;
+    padding: 10px 18px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #f4f4f4;
+    /* outline: none; */
+}
+
+.modal-wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: -10;
+    background-color: rgba(49, 49, 49, 0.9);
+}
+
+.modal-container {
+    z-index: 3;
+    background-color: #000;
+    padding: 1rem 1rem;
+    border-radius: 1rem;
+    width: 30%;
+    overflow-y: auto;
+    margin: 2rem auto;
+}
+
+.close-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #fff;
+}
+
+.close-menu:hover {
+    color: #a337ff;
+}
+
+.additional {
+    color: #fff;
+    padding: auto;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    text-align: center;
+    margin: .1rem .5rem;
+}
+
+.additional span {
+    color: #a337ff;
+    padding: 0 .5rem;
+}
+
+.additional span:hover {
+    cursor: pointer;
+    color: #8c6eff;
+    border-bottom: 1px solid #8c6eff;
+}
+
+.not-login {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 1rem;
+    margin: auto;
+    max-width: 600px;
+    border-radius: 1rem;
+}
+
+.not-login div {
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.not-login .first-para{
+    text-align: justify;
+    
+}
+
+.not-login .go-back-home {
+    text-align: center;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+    .modal-container {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .modal-container {
+        width: 70%;
+    }
+
+    .form input,
+    .form textarea {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    label {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 601px) {
+    .modal-container {
+        width: 80%;
+    }
+}
