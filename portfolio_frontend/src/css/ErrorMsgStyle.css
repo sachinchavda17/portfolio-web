@@ -30,3 +30,11 @@
     cursor: pointer;
   }
   
+  .error-full .reload-btn{
+    padding: 5px 10px ;
+    color: white;
+    background-color: rgb(44 125 255);
+    border-radius: 5px ;
+    border: 1px solid rgb(44 125 255) ;
+    cursor: pointer;
+  }

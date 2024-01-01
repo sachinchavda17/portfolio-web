@@ -4,17 +4,14 @@ import Footer from "../components/Footer";
 import HeroImg2 from "../components/HeroImg2";
 import Work from "../components/Work";
 import WorkCardModal from "../components/WorkCardModal";
-
-export const ModalContext = createContext({ setShowProjectModal: false });
+import openModalContext from "../context/openModalContext";
 
 function Project() {
-  const { setShowProjectModal } = useContext(ModalContext);
+  const { openModal } = useContext(openModalContext);
   return (
-    <ModalContext.Provider>
-      <div>
-        {setShowProjectModal ? (
-          <WorkCardModal />
-        ) : (
+    <div>
+      {openModal ? <WorkCardModal /> :
+        (
           <>
             <Navbar />
             <HeroImg2 heading="PROJECTS" text="Some of my recent work." />
@@ -22,8 +19,7 @@ function Project() {
             <Footer />
           </>
         )}
-      </div>
-    </ModalContext.Provider>
+    </div>
   );
 }
 

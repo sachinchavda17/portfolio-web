@@ -4,12 +4,13 @@ import { useCookies } from "react-cookie";
 import { NavLink, Link } from "react-router-dom";
 import WorkCardModal from "./WorkCardModal";
 import { ModalContext } from "../routes/Project";
+import openModalContext from "../context/openModalContext";
 
 const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
   const [cookie, setCookie] = useCookies(["email"]);
   const [showFullText, setShowFullText] = useState(false);
 
-  const { setShowProjectModal } = useContext(ModalContext);
+  const { setOpenModal, setThumbnail, setTitle, setText, setSource, setView, setProjectId } = useContext(openModalContext);
 
   const toggleText = () => {
     setShowFullText(!showFullText);
@@ -27,11 +28,21 @@ const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
     return truncatedText;
   };
   const displayText = showFullText ? text : truncateText(text, 150);
+
+  const openModal = (view, thumbnail, source, title, text, projectId) => {
+    setOpenModal(true);
+    setThumbnail(thumbnail);
+    setTitle(title);
+    setText(text);
+    setView(view);
+    setSource(source);
+    setProjectId(projectId);
+  };
+
   return (
     <div>
-      {/* {!showCardModal ? ( */}
       <div className="project-card">
-        <div onClick={() => setShowProjectModal(true)}>
+        <div onClick={() => openModal(view, thumbnail, source, title, text, projectId)}>
           <img src={thumbnail} alt={"no Img "} />
         </div>
         <h2 className="project-title">{title}</h2>
@@ -57,24 +68,6 @@ const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
           </div>
         </div>
       </div>
-      {/* ) : (
-        <WorkCardModal
-          onClick={(e) => setShowCardModal(false)}
-          view={view}
-          thumbnail={thumbnail}
-          source={source}
-          title={title}
-          text={text}
-          projectId={projectId}
-          showCardModal={showCardModal}
-          setShowCardModal={setShowCardModal}
-          displayText={displayText}
-          toggleText={toggleText}
-          showFullText={showFullText}
-          setShowFullText={setShowFullText}
-          cookie={cookie}
-        />
-      )} */}
     </div>
   );
 };

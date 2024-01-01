@@ -55,7 +55,8 @@ const UploadForm = () => {
         />
 
         <label htmlFor="thumbnail">Thumbnail </label>
-        <UploadWidget setUrl={setImgUrl}  />
+        {imgUrl && <img src={imgUrl} alt={imgUrl} className="thumbnail-img" />}
+        <UploadWidget setUrl={setImgUrl} />
 
         <label htmlFor="view">View Url </label>
         <input

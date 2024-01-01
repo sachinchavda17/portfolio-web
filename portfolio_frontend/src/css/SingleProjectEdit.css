@@ -29,3 +29,11 @@ label {
     align-items: center;
     justify-content: space-around;
   }
+
+  .thumbnail-img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
+  }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./routes/Home";
 import Project from "./routes/Project";
 import Contact from "./routes/Contact";
@@ -11,28 +11,63 @@ import { useCookies } from "react-cookie";
 import ProjectEdit from "./routes/ProjectEdit";
 import Skill from "./routes/Skill.js";
 import WorkCardModal from "./components/WorkCardModal.js";
+import openModalContext from "./context/openModalContext.js";
 function App() {
   const [cookie, setCookie] = useCookies(["email"]);
+  const [openModal, setOpenModal] = useState(false);
+  const [thumbnail, setThumbnail] = useState("");
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [view, setView] = useState("");
+  const [source, setSource] = useState("");
+  const [projectId, setProjectId] = useState("");
+
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     // Reload the page
+  //     window.location.reload();
+  //   }, 6000); // Adjust the time interval in milliseconds (60,000 milliseconds = 1 minute)
+
+  //   // Clear the interval when the component is unmounted
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/Skill" element={<Skill />} />
-        <Route path="/modal" element={<WorkCardModal />} />
-        {cookie.email && <Route path="/upload" element={<UploadProject />} />}
-
-        {cookie.email && (
-          <Route path="/edit/:projectId" element={<ProjectEdit />} />
-        )}
-
-        {!cookie.email && <Route path="/signup" element={<SignupForm />} />}
-        {!cookie.email && <Route path="/login" element={<LoginForm />} />}
-
-        <Route path="*" element={<Navigate to={"/"} />} />
-      </Routes>
+      <openModalContext.Provider
+        value={{
+          openModal,
+          setOpenModal,
+          thumbnail,
+          setThumbnail,
+          title,
+          setTitle,
+          text,
+          setText,
+          source,
+          setSource,
+          view,
+          setView,
+          projectId,
+          setProjectId,
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/project" element={<Project />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/Skill" element={<Skill />} />
+          {cookie.email && <Route path="/upload" element={<UploadProject />} />}
+          {cookie.email && (
+            <Route path="/edit/:projectId" element={<ProjectEdit />} />
+          )}
+          {!cookie.email && <Route path="/signup" element={<SignupForm />} />}
+          {!cookie.email && <Route path="/login" element={<LoginForm />} />}
+          <Route path="*" element={<Navigate to={"/"} />} />
+        </Routes>
+      </openModalContext.Provider>
     </>
   );
 }

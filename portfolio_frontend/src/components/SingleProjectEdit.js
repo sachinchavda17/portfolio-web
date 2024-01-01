@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../css/SingleProjectEdit.css";
 import { makeGETRequest, makePOSTRequest } from "../utils/serverHerlper";
 import { useParams, useNavigate } from "react-router-dom";
 import UploadWidget from "./UploadWidget";
 import ErrorMsg from "./ErrorMsg";
 import SuccessMsg from "./SuccessMsg";
+import openModalContext from "../context/openModalContext";
 
 const UploadForm = () => {
   const [title, setTitle] = useState("");
@@ -18,12 +19,11 @@ const UploadForm = () => {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const { setOpenModal } = useContext(openModalContext)
   const closeErrorSuccess = () => {
     setError("");
     setSuccess("");
   };
-
-  // const projectId = "65622128d931815a33789758";
 
   const navigate = useNavigate();
 
@@ -94,6 +94,7 @@ const UploadForm = () => {
       setSuccess("Project deleted successfully");
       setTimeout(() => {
         setSuccess("");
+        setOpenModal(false)
         navigate("/");
       }, 2000);
     } catch (err) {
@@ -114,6 +115,7 @@ const UploadForm = () => {
         />
         <label htmlFor="thumbnail">Edit Thumbnail </label>
         <label htmlFor="">{uploadedFileName} </label>
+        <img src={item.thumbnail} alt={item.thumbnail} className="thumbnail-img" />
         <UploadWidget setUrl={setImgUrl} setName={setUploadedFileName} />
         <label htmlFor="view">Edit View Url </label>
         <input
@@ -123,6 +125,14 @@ const UploadForm = () => {
           value={view === "" ? item.view || "" : view}
           onChange={(e) => setView(e.target.value)}
         />
+
+        {/* <label htmlFor="lang">Language In Project </label>
+        <input
+          type="text"
+          name="lang"
+          value={source}
+          onChange={(e) => setSource(e.target.value)}
+        /> */}
         <label htmlFor="source">Edit Source Url </label>
         <input
           type="text"

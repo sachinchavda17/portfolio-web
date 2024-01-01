@@ -35,9 +35,6 @@ const Navbar = () => {
       </Link>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
         <li>
-          <Link to="/modal">Modal</Link>
-        </li>
-        <li>
           <Link to="/project">Project</Link>
         </li>
         <li>

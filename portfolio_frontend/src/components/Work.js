@@ -12,6 +12,7 @@ const Work = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -19,7 +20,7 @@ const Work = () => {
         setProjectData(response.data);
       } catch (error) {
         console.error("Error fetching project data:", error);
-        setError("Error fetching project data");
+        setError("Error fetching project data Try to Reload" );
       } finally {
         setLoading(false);
       }
@@ -28,12 +29,9 @@ const Work = () => {
   }, []);
 
   const closeErrorSuccess = () => {
-    if (error) {
-      setError("");
-    }
-    if (success) {
-      setSuccess("");
-    }
+    setError("");
+    setSuccess("");
+
   };
 
   return (
@@ -51,14 +49,7 @@ const Work = () => {
         </div>
       ) : (
         <div className="project-container">
-          {error && <ErrorMsg errText={error} closeError={closeErrorSuccess} />}
-          {success && (
-            <SuccessMsg
-              successText={success}
-              closeSuccess={closeErrorSuccess}
-            />
-          )}
-
+          {error && <ErrorMsg errText={error} closeError={closeErrorSuccess} reload={true}  className={"90vw"} />}
           {projectData.map((val, ind) => {
             return (
               <WorkCard
@@ -72,18 +63,6 @@ const Work = () => {
               />
             );
           })}
-          {/* {WorkCardData.map((val, ind) => {
-          return (
-            <WorkCard
-              key={ind}
-              imgSrc={val.imgSrc}
-              title={val.title}
-              text={val.text}
-              view={val.view}
-              source={val.source}
-            />
-          );
-        })} */}
         </div>
       )}
     </div>
