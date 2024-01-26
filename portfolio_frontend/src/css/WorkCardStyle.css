@@ -25,30 +25,29 @@
     height: 40%;
     /* object-fit: cover; */
     cursor: pointer;
+    transform: translateY(0);
+
 }
 
 .project-card:hover {
     box-shadow: 0 0 20px 0 #4c4848;
-    animation: card-animate .3s ;
-    animation-fill-mode: forwards;
+    transform: translateY(-15px);
 }
-
-@keyframes card-animate {
-    100% {
-        transform: translateY(-15px) ;
-    }
-}
-
 
 .project-title {
     color: #fff;
     padding: 1rem 0;
+    font-size: 1.3rem;
 }
 
 .pro-details {
     padding-bottom: 1rem;
-    font-size: 1.1rem;
     text-align: justify;
+}
+
+.pro-details p {
+    font-size: 1.1rem;
+
 }
 
 .pro-btns {

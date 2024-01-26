@@ -43,7 +43,7 @@ const Footer = () => {
         </div>
 
         <div className="right">
-          <h4>About the company</h4>
+          <h4>About My Self</h4>
           <p>
             This is me Sachin Chavda. Student at LJ University. I enjoy
             discussing new projects and design challenges.

@@ -46,11 +46,11 @@ const LoginForm = () => {
   };
 
   const closeError = () => {
-    setError(""); // Clear the error when closing
+    setError("");
   };
 
   const closeLogin = () => {
-    closeError(); // Close the error when closing the login form
+    closeError();
     navigate("/");
   };
   const encodeEmail = (email) => {
@@ -69,39 +69,40 @@ const LoginForm = () => {
 
   return (
     <div>
-      <div className="modal-wrapper"></div>
-      <div className="modal-container">
-        <div>
-          <FaTimes size={30} onClick={closeLogin} className="close-menu" />
-        </div>
-        <div className="login-container">
-          <h1 className="heading-name">
-            <span>Login</span>
-          </h1>
-          <div className="login-form" action="">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              placeholder="Enter your email "
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <PasswordInput
-              label="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {error && <ErrorMsg errText={error} closeError={closeError} />}
-            <button type="submit" className="btn" onClick={handleLogin}>
-              Login
-            </button>
+      <div className="modal-wrapper">
+        <div className="modal-container">
+          <div>
+            <FaTimes size={30} onClick={closeLogin} className="close-menu" />
           </div>
-          <div className="additional">
-            Don't have an account?
-            <Link to={"/signup"}>
-              <span>Create An Account</span>
-            </Link>
+          <div className="login-container">
+            <h1 className="heading-name">
+              <span>Login</span>
+            </h1>
+            <div className="login-form" action="">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                placeholder="Enter your email "
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <PasswordInput
+                label="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {error && <ErrorMsg errText={error} closeError={closeError} />}
+              <button type="submit" className="btn" onClick={handleLogin}>
+                Login
+              </button>
+            </div>
+            <div className="additional">
+              Don't have an account?
+              <Link to={"/signup"}>
+                <span>Create An Account</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

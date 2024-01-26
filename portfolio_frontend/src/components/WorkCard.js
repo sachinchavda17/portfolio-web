@@ -1,16 +1,21 @@
 import "../css/WorkCardStyle.css";
 import React, { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
-import { NavLink, Link } from "react-router-dom";
-import WorkCardModal from "./WorkCardModal";
-import { ModalContext } from "../routes/Project";
 import openModalContext from "../context/openModalContext";
 
 const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
-  const [cookie, setCookie] = useCookies(["email"]);
+  // const [cookie, setCookie] = useCookies(["email"]);
   const [showFullText, setShowFullText] = useState(false);
 
-  const { setOpenModal, setThumbnail, setTitle, setText, setSource, setView, setProjectId } = useContext(openModalContext);
+  const {
+    setOpenModal,
+    setThumbnail,
+    setTitle,
+    setText,
+    setSource,
+    setView,
+    setProjectId,
+  } = useContext(openModalContext);
 
   const toggleText = () => {
     setShowFullText(!showFullText);
@@ -42,8 +47,12 @@ const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
   return (
     <div>
       <div className="project-card">
-        <div onClick={() => openModal(view, thumbnail, source, title, text, projectId)}>
-          <img src={thumbnail} alt={"no Img "} />
+        <div
+          onClick={() =>
+            openModal(view, thumbnail, source, title, text, projectId)
+          }
+        >
+          <img src={thumbnail} alt={thumbnail} />
         </div>
         <h2 className="project-title">{title}</h2>
         <div className="pro-details">
@@ -53,19 +62,6 @@ const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
               {showFullText ? "Read Less" : "Read More"}
             </span>
           )}
-          <div className="pro-btns">
-            <NavLink to={view} className={"btn"} target="_blank">
-              View
-            </NavLink>
-            <NavLink to={source} className={"btn"} target="_blank">
-              Source
-            </NavLink>
-            {cookie.email && (
-              <NavLink to={"/edit/" + projectId} className={"btn"}>
-                Edit
-              </NavLink>
-            )}
-          </div>
         </div>
       </div>
     </div>

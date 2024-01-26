@@ -4,8 +4,6 @@ import WorkCard from "./WorkCard";
 import { makeGETRequest } from "../utils/serverHerlper";
 import { FaSpinner } from "react-icons/fa";
 import ErrorMsg from "./ErrorMsg";
-import SuccessMsg from "./SuccessMsg";
-import Img from "../assets/Infinity-1s.gif";
 
 const Work = () => {
   const [projectData, setProjectData] = useState([]);
@@ -20,7 +18,7 @@ const Work = () => {
         setProjectData(response.data);
       } catch (error) {
         console.error("Error fetching project data:", error);
-        setError("Error fetching project data Try to Reload" );
+        setError("Error fetching project data Try to Reload");
       } finally {
         setLoading(false);
       }
@@ -31,7 +29,6 @@ const Work = () => {
   const closeErrorSuccess = () => {
     setError("");
     setSuccess("");
-
   };
 
   return (
@@ -39,8 +36,6 @@ const Work = () => {
       <h1 className="project-heading">Projects</h1>
       {loading ? (
         <div className="loading-box">
-          <p>Loading...</p>
-          {/* <img src={"https://loading.io/asset/302387"} alt="loading" /> */}
           <FaSpinner
             size={50}
             style={{ color: "White" }}
@@ -49,7 +44,14 @@ const Work = () => {
         </div>
       ) : (
         <div className="project-container">
-          {error && <ErrorMsg errText={error} closeError={closeErrorSuccess} reload={true}  className={"90vw"} />}
+          {error && (
+            <ErrorMsg
+              errText={error}
+              closeError={closeErrorSuccess}
+              reload={true}
+              className={"90vw"}
+            />
+          )}
           {projectData.map((val, ind) => {
             return (
               <WorkCard

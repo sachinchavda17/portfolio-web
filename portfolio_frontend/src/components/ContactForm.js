@@ -1,8 +1,8 @@
 import "../css/FormStyle.css";
-
 import React, { useState } from "react";
 import SuccessMsg from "./SuccessMsg";
 import ErrorMsg from "./ErrorMsg";
+import { FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { makePOSTRequest } from "../utils/serverHerlper";
 
@@ -12,17 +12,18 @@ const Form = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(null);
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const data = { email, name, message };
       const response = await makePOSTRequest("/contact/send-email", data);
       if (response.err) {
         setError(response.err);
       } else {
-        // setSuccess("Your details have been successfully submitted.");
         setSuccess(response.message);
         setTimeout(() => {
           setSuccess("");
@@ -31,6 +32,8 @@ const Form = () => {
       }
     } catch (err) {
       setError("Error submitting form");
+    } finally {
+      setLoading(false);
     }
   };
   const closeErrorSuccess = () => {
@@ -67,7 +70,20 @@ const Form = () => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       ></textarea>
-      <button className="btn">Submit</button>
+      {loading ? (
+        <div className="loading-box">
+          <FaSpinner
+            size={50}
+            style={{ color: "White" }}
+            className="loading-spinner"
+          />
+        </div>
+      ) : (
+        <button className="btn" disabled={loading}>
+          Submit
+        </button>
+      )}
+
       {success && (
         <SuccessMsg successText={success} closeSuccess={closeErrorSuccess} />
       )}

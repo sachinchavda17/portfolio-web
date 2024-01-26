@@ -22,9 +22,9 @@ router.post("/send-email", async (req, res) => {
     });
 
     const mailOptions = {
-      from: email,
-      to: process.env.SMTP_EMAIL,
-      subject: "Portfolio Contact Email",
+      from: process.env.SMTP_EMAIL,
+      to: email,
+      subject: "Portfolio Contact Details",
       html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
     };
 

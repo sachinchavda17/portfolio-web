@@ -32,7 +32,6 @@ function App() {
   //   return () => clearInterval(intervalId);
   // }, []);
 
-
   return (
     <>
       <openModalContext.Provider
@@ -54,7 +53,9 @@ function App() {
         }}
       >
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />}>
+            <Route path="/" element={<WorkCardModal />} />
+          </Route>
           <Route path="/about" element={<About />} />
           <Route path="/project" element={<Project />} />
           <Route path="/contact" element={<Contact />} />

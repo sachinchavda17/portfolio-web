@@ -10,15 +10,16 @@ function Project() {
   const { openModal } = useContext(openModalContext);
   return (
     <div>
-      {openModal ? <WorkCardModal /> :
-        (
-          <>
-            <Navbar />
-            <HeroImg2 heading="PROJECTS" text="Some of my recent work." />
-            <Work />
-            <Footer />
-          </>
-        )}
+      {/* {openModal ? <WorkCardModal /> :
+        ( */}
+      <>
+        <Navbar />
+        <HeroImg2 heading="PROJECTS" text="Some of my recent work." />
+        <Work />
+        <Footer />
+        {openModal && <WorkCardModal />}
+      </>
+      {/* )} */}
     </div>
   );
 }

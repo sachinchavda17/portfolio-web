@@ -43,9 +43,9 @@ const Navbar = () => {
         <li>
           <Link to="/contact">Contact</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/skill">Skill</Link>
-        </li>
+        </li> */}
         <li>
           <Link to={GithubRepo} target="_blank">Github</Link>
         </li>
