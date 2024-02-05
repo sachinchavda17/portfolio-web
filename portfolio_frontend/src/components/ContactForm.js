@@ -1,4 +1,5 @@
 import "../css/FormStyle.css";
+import "../css/Loading.css";
 import React, { useState } from "react";
 import SuccessMsg from "./SuccessMsg";
 import ErrorMsg from "./ErrorMsg";
@@ -20,6 +21,10 @@ const Form = () => {
     try {
       setLoading(true);
       const data = { email, name, message };
+      if (!data.email || !data.name || !data.message) {
+        setError("Please fill all the field!");
+        return;
+      }
       const response = await makePOSTRequest("/contact/send-email", data);
       if (response.err) {
         setError(response.err);
@@ -48,7 +53,6 @@ const Form = () => {
         type="text"
         name="name"
         placeholder="Enter Your name"
-        required
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
@@ -59,7 +63,6 @@ const Form = () => {
         placeholder="abc@abc.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        required
       />
       <label htmlFor="msg">Message</label>
       <textarea
@@ -70,24 +73,25 @@ const Form = () => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       ></textarea>
-      {loading ? (
-        <div className="loading-box">
-          <FaSpinner
-            size={50}
-            style={{ color: "White" }}
-            className="loading-spinner"
-          />
-        </div>
-      ) : (
-        <button className="btn" disabled={loading}>
-          Submit
-        </button>
-      )}
 
       {success && (
         <SuccessMsg successText={success} closeSuccess={closeErrorSuccess} />
       )}
       {error && <ErrorMsg errText={error} closeError={closeErrorSuccess} />}
+
+      <button className="btn" disabled={loading}>
+        {loading ? (
+          <div className="loading-btn">
+            <FaSpinner
+              size={30}
+              style={{ color: "White" }}
+              className="loading-spinner"
+            />
+          </div>
+        ) : (
+          "Submit"
+        )}
+      </button>
     </form>
   );
 };

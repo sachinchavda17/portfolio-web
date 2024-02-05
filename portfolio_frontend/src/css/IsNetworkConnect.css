@@ -1,0 +1,13 @@
+.network {
+    bottom: 0;
+    position: fixed;
+    color: #fff;
+    background: #000;
+    padding: 1rem 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    transition: background-color 0.5s ease, opacity 0.5s ease;
+}

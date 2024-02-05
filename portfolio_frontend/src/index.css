@@ -9,7 +9,7 @@
 
 ::-webkit-scrollbar {
     width: 5px;
-    height: 80px;
+    height: 5px;
 }
 ::-webkit-scrollbar-thumb {
     background: #575C66;

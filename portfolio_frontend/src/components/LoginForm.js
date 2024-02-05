@@ -1,7 +1,7 @@
 // LoginForm.js
 import React, { useEffect, useState } from "react";
 import "../css/LoginFormStyle.css";
-import { FaTimes } from "react-icons/fa";
+import { FaSpinner, FaTimes } from "react-icons/fa";
 import { makePOSTRequest } from "../utils/serverHerlper";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -13,17 +13,19 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [cookie, setCookie] = useCookies(["email"]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(null);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   document.body.style.overflowY = "hidden";
-  //   return () => {
-  //     document.body.style.overflowY = "scroll";
-  //   };
-  // }, []);
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, []);
 
   const handleLogin = async () => {
     try {
+      setLoading(true);
       const data = { email, password };
       const response = await makePOSTRequest("/auth/login", data);
       if (response.err) {
@@ -41,7 +43,9 @@ const LoginForm = () => {
       // alert(response.message);
       navigate("/");
     } catch (error) {
-      setError("An unexpected error occurred. Please try again."); // Set a generic error message
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -93,8 +97,23 @@ const LoginForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {error && <ErrorMsg errText={error} closeError={closeError} />}
-              <button type="submit" className="btn" onClick={handleLogin}>
-                Login
+              <button
+                type="submit"
+                className="btn"
+                onClick={handleLogin}
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className="loading-btn">
+                    <FaSpinner
+                      size={30}
+                      style={{ color: "White" }}
+                      className="loading-spinner"
+                    />
+                  </div>
+                ) : (
+                  "Login"
+                )}
               </button>
             </div>
             <div className="additional">

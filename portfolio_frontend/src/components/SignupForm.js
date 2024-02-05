@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/LoginFormStyle.css";
-import { FaEye, FaEyeSlash, FaSmile, FaTimes } from "react-icons/fa";
+import { FaEye, FaSpinner, FaSmile, FaTimes } from "react-icons/fa";
 import { makePOSTRequest } from "../utils/serverHerlper";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -14,10 +14,12 @@ const SignupForm = () => {
   const [username, setUsername] = useState("");
   const [cookie, setCookie] = useCookies(["email"]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     try {
+      setLoading(true);
       const data = { email, password, username, confirmPassword };
       if (password !== confirmPassword) {
         setError("Passwords does not match!");
@@ -38,6 +40,8 @@ const SignupForm = () => {
       navigate("/login");
     } catch (error) {
       setError(error);
+    } finally {
+      setLoading(false);
     }
   };
   const closeError = () => {
@@ -124,9 +128,24 @@ const SignupForm = () => {
 
             {error && <ErrorMsg errText={error} closeError={closeError} />}
 
-            <button type="submit" className="btn" onClick={handleLogin}>
-              Sign Up
-            </button>
+            <button
+                type="submit"
+                className="btn"
+                onClick={handleSignup}
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className="loading-btn">
+                    <FaSpinner
+                      size={30}
+                      style={{ color: "White" }}
+                      className="loading-spinner"
+                    />
+                  </div>
+                ) : (
+                  "Sign Up"
+                )}
+              </button>
           </div>
           <div className="additional">
             Already Have an Account?

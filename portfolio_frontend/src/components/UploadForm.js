@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import UploadWidget from "./UploadWidget";
 import ErrorMsg from "./ErrorMsg";
 import SuccessMsg from "./SuccessMsg";
+import { FaSpinner } from "react-icons/fa";
 
 const UploadForm = () => {
   const [title, setTitle] = useState("");
@@ -16,10 +17,22 @@ const UploadForm = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(null);
 
   const submitProject = async () => {
     try {
+      setLoading(true);
       const data = { title, thumbnail: imgUrl, text, view, source };
+      if (
+        !data.title ||
+        !data.thumbnail ||
+        !data.text ||
+        !data.view ||
+        !data.source
+      ) {
+        setError("All fields are required!");
+        return;
+      }
       const response = await makePOSTRequest("/project/create", data);
       if (response.err) {
         setError("Could not create Project");
@@ -32,6 +45,8 @@ const UploadForm = () => {
       }
     } catch (err) {
       setError("Could not create Project");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,8 +109,23 @@ const UploadForm = () => {
         {success && (
           <SuccessMsg successText={success} closeSuccess={closeErrorSuccess} />
         )}
-        <button type="submit" className="btn" onClick={submitProject}>
-          Submit
+        <button
+          type="submit"
+          className="btn"
+          onClick={submitProject}
+          disabled={loading}
+        >
+          {loading ? (
+            <div className="loading-btn">
+              <FaSpinner
+                size={30}
+                style={{ color: "White" }}
+                className="loading-spinner"
+              />
+            </div>
+          ) : (
+            "Submit"
+          )}
         </button>
       </div>
     </div>

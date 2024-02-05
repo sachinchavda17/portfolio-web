@@ -49,7 +49,7 @@ const Footer = () => {
             discussing new projects and design challenges.
           </p>
           <div className="social">
-          <Link to={"http://github.com/sachinchavda18"} target="_blank">
+          <Link to={"http://github.com/sachinchavda17"} target="_blank">
               <FaGithub
                 size={30}
                 style={{ color: "#fff", marginRight: "1rem" }}

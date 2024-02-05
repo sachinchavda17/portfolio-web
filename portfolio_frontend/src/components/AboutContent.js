@@ -24,9 +24,17 @@ const AboutContent = () => {
       <div className="right">
         <div className="img-container">
           <img src={AboutImg} alt="true" className="img" />
+          {/* <div className="img">
+            CSS
+          </div> */}
         </div>
       </div>
     </div>
+    // <div className="body">
+    //   <div className="box">
+    //      <img src={AboutImg} alt="true"  />
+    //   </div>
+    // </div>
   );
 };
 

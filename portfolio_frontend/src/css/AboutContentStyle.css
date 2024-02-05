@@ -24,8 +24,6 @@
 }
 
 .right .img-container {
-  /* display: grid;
-  grid-template-columns: repeat(12, 1fr); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,6 +38,7 @@
   opacity: .7;
   animation: about-img 2s linear infinite;
 }
+
 
 @keyframes about-img {
   0% {
@@ -59,19 +58,6 @@
 }
 
 
-/* .right .top {
-  grid-column: 1 / span 8;
-  grid-row: 1;
-  padding-top: 20%;
-  z-index: 6;
-}
-
-.right .bottom {
-  grid-column: 4/ -1;
-  grid-row: 1;
-  z-index: 5;
-} */
-
 @media screen and (max-width: 740px) {
   .about {
     grid-template-columns: 1fr;
@@ -83,5 +69,66 @@
 
   .about .img {
     max-width: 90%;
+  }
+}
+
+/* class box border animation */
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0e1538;
+}
+
+.box {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.box img {
+  color: rgb(226, 226, 226);
+  text-shadow: 2px 2px black;
+  font-size: 8em;
+  z-index: 2;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 140%;
+  background: linear-gradient(#00ccff, #d500f9);
+  transition: 0.5s;
+  animation: rotate 20s linear infinite;
+  z-index: 1;
+}
+
+.box::after {
+  content: "";
+  position: absolute;
+  background-color: #0e1538;
+  inset: 5px;
+  border-radius: 16px;
+  z-index: 1;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(3600deg);
+  }
+  50% {
+    filter: hue-rotate(3deg);
   }
 }

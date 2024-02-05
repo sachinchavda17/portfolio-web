@@ -1,4 +1,4 @@
-import { Link, NavLink} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../css/WordCardModalStyle.css";
 import { useContext, useEffect } from "react";
 import openModalContext from "../context/openModalContext";
@@ -28,7 +28,7 @@ const WorkCardModal = () => {
     "Cloudinary Store",
   ];
 
-    useEffect(() => {
+  useEffect(() => {
     document.body.style.overflowY = "hidden";
     return () => {
       document.body.style.overflowY = "scroll";
@@ -48,7 +48,11 @@ const WorkCardModal = () => {
             <div className="modal-title">{title}</div>
             <div className="modal-tags">
               {usedLang.map((lang, ind) => {
-                return <div className="tag" key={ind}>{lang}</div>;
+                return (
+                  <div className="tag" key={ind}>
+                    {lang}
+                  </div>
+                );
               })}
             </div>
             <div className="modal-description">{text}</div>

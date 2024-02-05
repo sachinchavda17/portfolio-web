@@ -1,4 +1,5 @@
 import "../css/WorkCardStyle.css";
+import "../css/Loading.css";
 import React, { useEffect, useState } from "react";
 import WorkCard from "./WorkCard";
 import { makeGETRequest } from "../utils/serverHerlper";

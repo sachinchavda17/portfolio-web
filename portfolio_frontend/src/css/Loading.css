@@ -1,0 +1,32 @@
+.loading-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2rem auto;
+}
+.loading-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loading-box p {
+    padding-bottom: 1rem;
+}
+
+.loading-box .loading-spinner ,
+.loading-btn .loading-spinner {
+    animation: spin 2.5s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

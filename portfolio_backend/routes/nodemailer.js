@@ -22,10 +22,10 @@ router.post("/send-email", async (req, res) => {
     });
 
     const mailOptions = {
-      from: process.env.SMTP_EMAIL,
+      from: `'Confirmation' ${process.env.SMTP_EMAIL} `,
       to: email,
       subject: "Portfolio Contact Details",
-      html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
+      html: `<h2> Your filled data </h2><p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
     };
 
     const info = await transporter.sendMail(mailOptions);

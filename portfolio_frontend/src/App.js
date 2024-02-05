@@ -12,6 +12,7 @@ import ProjectEdit from "./routes/ProjectEdit";
 import Skill from "./routes/Skill.js";
 import WorkCardModal from "./components/WorkCardModal.js";
 import openModalContext from "./context/openModalContext.js";
+import IsNetworkConnect from "./components/IsNetworkConnect.js";
 function App() {
   const [cookie, setCookie] = useCookies(["email"]);
   const [openModal, setOpenModal] = useState(false);
@@ -21,6 +22,26 @@ function App() {
   const [view, setView] = useState("");
   const [source, setSource] = useState("");
   const [projectId, setProjectId] = useState("");
+
+  const [isOnline, setIsOnline] = useState(window.navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => {
+      setIsOnline(true);
+    };
+
+    const handleOffline = () => {
+      setIsOnline(false);
+    };
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
 
   // useEffect(() => {
   //   const intervalId = setInterval(() => {
@@ -69,6 +90,9 @@ function App() {
           <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
       </openModalContext.Provider>
+      {!isOnline && (
+        <IsNetworkConnect isOnline={isOnline} setIsOnline={setIsOnline} />
+      )}
     </>
   );
 }
