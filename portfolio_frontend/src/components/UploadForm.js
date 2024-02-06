@@ -13,22 +13,34 @@ const UploadForm = () => {
   const [text, setText] = useState("");
   const [view, setView] = useState("");
   const [source, setSource] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
+  const [imgUrl, setImgUrl] = useState(
+    "https://res.cloudinary.com/dbm00gxt1/image/upload/v1707214230/xscspg4gdvkminmcpvyq.jpg"
+  );
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(null);
+  const [usedLang, setUsedLang] = useState([]);
+
+  const handleAddLang = () => {
+    setUsedLang([...usedLang, ""]);
+  };
+
+  const handleRemoveLang = (index) => {
+    setUsedLang(usedLang.filter((lang, i) => i !== index));
+  };
 
   const submitProject = async () => {
     try {
       setLoading(true);
-      const data = { title, thumbnail: imgUrl, text, view, source };
+      const data = { title, thumbnail: imgUrl, text, view, source, usedLang };
       if (
         !data.title ||
         !data.thumbnail ||
         !data.text ||
         !data.view ||
-        !data.source
+        !data.source ||
+        !data.usedLang
       ) {
         setError("All fields are required!");
         return;
@@ -105,6 +117,34 @@ const UploadForm = () => {
             setText(e.target.value);
           }}
         />
+
+        <label htmlFor="lang">Languages Used:</label>
+        <div className="lang-list">
+          {usedLang.map((lang, index) => (
+            <div className="lang-item" key={index}>
+              <input
+                type="text"
+                name={`lang${index}`}
+                value={lang}
+                onChange={(e) =>
+                  setUsedLang((prevLangs) =>
+                    prevLangs.map((l, i) => (i === index ? e.target.value : l))
+                  )
+                }
+              />
+              <button type="button" onClick={() => handleRemoveLang(index)}>
+                -
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="add-lang-button"
+            onClick={handleAddLang}
+          >
+            +
+          </button>
+        </div>
         {error && <ErrorMsg errText={error} closeError={closeErrorSuccess} />}
         {success && (
           <SuccessMsg successText={success} closeSuccess={closeErrorSuccess} />

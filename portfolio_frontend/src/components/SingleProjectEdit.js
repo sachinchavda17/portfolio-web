@@ -16,6 +16,7 @@ const SingleProjectEdit = () => {
   const [imgUrl, setImgUrl] = useState("");
   const [uploadedFileName, setUploadedFileName] = useState("");
   const [oneProject, setOneProject] = useState([]);
+  const [usedLang, setUsedLang] = useState([]); // Initialize usedLang as an empty array
   const { projectId } = useParams();
 
   const [error, setError] = useState("");
@@ -30,6 +31,14 @@ const SingleProjectEdit = () => {
     setSuccess("");
   };
 
+  const handleAddLang = () => {
+    setUsedLang([...usedLang, ""]);
+  };
+
+  const handleRemoveLang = (index) => {
+    setUsedLang(usedLang.filter((lang, i) => i !== index));
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,6 +49,10 @@ const SingleProjectEdit = () => {
           "/project/get/singleproject/" + projectId
         );
         setOneProject(response.data);
+        // Check if the fetched project data contains usedLang field
+        if (response.data.length > 0 && response.data[0].usedLang) {
+          setUsedLang(response.data[0].usedLang);
+        }
       } catch (err) {
         setError("Error fetching project data");
       } finally {
@@ -55,28 +68,13 @@ const SingleProjectEdit = () => {
     try {
       setLoadingUpdate(true);
       const data = {
-        title: title,
-        thumbnail: imgUrl,
-        text: text,
-        view: view,
-        source: source,
+        title: title.trim() || item.title || "",
+        thumbnail: imgUrl.trim() || item.thumbnail || "",
+        text: text.trim() || item.text || "",
+        view: view.trim() || item.view || "",
+        source: source.trim() || item.source || "",
+        usedLang: usedLang.length > 0 ? usedLang.filter(lang => lang.trim() !== "") : item.usedLang || [],
       };
-
-      if (data.title === "") {
-        data.title = item.title || "";
-      }
-      if (data.text === "") {
-        data.text = item.text || "";
-      }
-      if (data.thumbnail === "") {
-        data.thumbnail = item.thumbnail || "";
-      }
-      if (data.source === "") {
-        data.source = item.source || "";
-      }
-      if (data.view === "") {
-        data.view = item.view || "";
-      }
 
       const response = await makePOSTRequest(
         "/project/update/" + projectId,
@@ -153,13 +151,36 @@ const SingleProjectEdit = () => {
             onChange={(e) => setView(e.target.value)}
           />
 
-          {/* <label htmlFor="lang">Language In Project </label>
-        <input
-          type="text"
-          name="lang"
-          value={source}
-          onChange={(e) => setSource(e.target.value)}
-        /> */}
+          <label htmlFor="lang">Languages Used:</label>
+          <div className="lang-list">
+            {usedLang.map((lang, index) => (
+              <div className="lang-item" key={index}>
+                <input
+                  type="text"
+                  name={`lang${index}`}
+                  value={lang}
+                  onChange={(e) =>
+                    setUsedLang((prevLangs) =>
+                      prevLangs.map((l, i) =>
+                        i === index ? e.target.value : l
+                      )
+                    )
+                  }
+                />
+                <button type="button"  onClick={() => handleRemoveLang(index)}>
+                  -
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              className="add-lang-button"
+              onClick={handleAddLang}
+            >
+              +
+            </button>
+          </div>
+
           <label htmlFor="source">Edit Source Url </label>
           <input
             type="text"

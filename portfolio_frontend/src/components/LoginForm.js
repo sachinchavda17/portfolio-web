@@ -1,4 +1,3 @@
-// LoginForm.js
 import React, { useEffect, useState } from "react";
 import "../css/LoginFormStyle.css";
 import { FaSpinner, FaTimes } from "react-icons/fa";

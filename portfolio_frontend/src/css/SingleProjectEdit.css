@@ -37,3 +37,54 @@ textarea {
   margin-bottom: 10px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
 }
+
+
+
+.lang-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.lang-item {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  color: #f4f4f4;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid  rgba(255, 255, 255, 0.1);
+}
+
+.lang-item:focus {
+  border: 2px solid white;
+}
+
+.lang-item input {
+  all: unset !important;
+  width: auto;
+}
+
+.lang-item button {
+  margin-left: 33px;
+  padding: 6px 12px;
+  background-color: gray;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.lang-item button:hover {
+  background-color: rgb(161, 159, 159);
+}
+
+.add-lang-button {
+  padding: 7px 12px;
+  margin-bottom: 10px;
+  background-color: gray;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.add-lang-button:hover {
+  background-color: rgb(161, 159, 159);
+}

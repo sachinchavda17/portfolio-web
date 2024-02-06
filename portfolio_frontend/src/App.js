@@ -22,6 +22,7 @@ function App() {
   const [view, setView] = useState("");
   const [source, setSource] = useState("");
   const [projectId, setProjectId] = useState("");
+  const [usedLang, setUsedLang] = useState([]);
 
   const [isOnline, setIsOnline] = useState(window.navigator.onLine);
 
@@ -52,27 +53,27 @@ function App() {
   //   // Clear the interval when the component is unmounted
   //   return () => clearInterval(intervalId);
   // }, []);
-
+  const contextValue = {
+    openModal,
+    setOpenModal,
+    thumbnail,
+    setThumbnail,
+    title,
+    setTitle,
+    text,
+    setText,
+    source,
+    setSource,
+    view,
+    setView,
+    projectId,
+    setProjectId,
+    usedLang,
+    setUsedLang,
+  };
   return (
     <>
-      <openModalContext.Provider
-        value={{
-          openModal,
-          setOpenModal,
-          thumbnail,
-          setThumbnail,
-          title,
-          setTitle,
-          text,
-          setText,
-          source,
-          setSource,
-          view,
-          setView,
-          projectId,
-          setProjectId,
-        }}
-      >
+      <openModalContext.Provider value={contextValue}>
         <Routes>
           <Route path="/" element={<Home />}>
             <Route path="/" element={<WorkCardModal />} />

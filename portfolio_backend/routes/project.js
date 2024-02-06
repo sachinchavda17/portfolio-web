@@ -3,14 +3,14 @@ const router = express.Router();
 const ProjectModel = require("../models/ProjectModel");
 
 router.post("/create", async (req, res) => {
-  const { title, thumbnail, text, view, source } = req.body;
-  if (!title || !thumbnail || !text || !view || !source) {
+  const { title, thumbnail, text, view, source, usedLang } = req.body;
+  if (!title || !thumbnail || !text || !view || !source || !usedLang) {
     return res
       .status(301)
       .json({ err: "Insufficient details to create Project. " });
   }
 
-  const projectDetails = { title, thumbnail, text, view, source };
+  const projectDetails = { title, thumbnail, text, view, source, usedLang };
   // const createProject = await ProjectModel.create(projectDetails)
   try {
     await ProjectModel.insertMany(projectDetails);
@@ -35,8 +35,8 @@ router.get("/get/singleproject/:projectId", async (req, res) => {
 
 router.post("/update/:projectId", async (req, res) => {
   const { projectId } = req.params;
-  const { title, thumbnail, text, view, source } = req.body;
-  const projectDetails = { title, thumbnail, text, view, source };
+  const { title, thumbnail, text, view, source ,usedLang} = req.body;
+  const projectDetails = { title, thumbnail, text, view, source, usedLang };
   try {
     await ProjectModel.updateOne({ _id: projectId }, projectDetails);
     return res.status(200).json({ message: "Successfully Updated." });
@@ -50,7 +50,7 @@ router.post("/update/:projectId", async (req, res) => {
 router.get("/delete/:projectId", async (req, res) => {
   const { projectId } = req.params;
   await ProjectModel.deleteOne({ _id: projectId });
-  return res.status(200).json({ message:"Successfully deleted." });
+  return res.status(200).json({ message: "Successfully deleted." });
 });
 
 module.exports = router;

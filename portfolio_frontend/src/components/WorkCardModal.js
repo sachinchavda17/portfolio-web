@@ -15,18 +15,13 @@ const WorkCardModal = () => {
     view,
     source,
     projectId,
+    usedLang,
   } = useContext(openModalContext);
+  console.log(usedLang);
   const closeModal = () => {
     setOpenModal(false);
   };
   const [cookie, setCookie] = useCookies(["email"]);
-  const usedLang = [
-    "React",
-    "MongoDb",
-    "Node.js",
-    "Express.js",
-    "Cloudinary Store",
-  ];
 
   useEffect(() => {
     document.body.style.overflowY = "hidden";
@@ -57,15 +52,29 @@ const WorkCardModal = () => {
             </div>
             <div className="modal-description">{text}</div>
             <div className="pro-btns">
-              <NavLink to={view} className={"btn"} target="_blank">
+              <NavLink
+                to={view}
+                className={"btn"}
+                target="_blank"
+                onClick={closeModal}
+              >
                 View
               </NavLink>
               {cookie?.email && (
-                <NavLink to={"/edit/" + projectId} className={"btn btn-light"}>
+                <NavLink
+                  to={"/edit/" + projectId}
+                  className={"btn btn-light"}
+                  onClick={closeModal}
+                >
                   Edit
                 </NavLink>
               )}
-              <NavLink to={source} className={" btn "} target="_blank">
+              <NavLink
+                to={source}
+                className={" btn "}
+                target="_blank"
+                onClick={closeModal}
+              >
                 Source
               </NavLink>
             </div>

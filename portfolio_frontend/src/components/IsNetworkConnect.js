@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/IsNetworkConnect.css";
 
-const IsNetworkConnect = ({isOnline,setIsOnline}) => {
+const IsNetworkConnect = ({isOnline}) => {
 
   return (
     <div className={`network`}>

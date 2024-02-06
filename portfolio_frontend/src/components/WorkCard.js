@@ -3,7 +3,15 @@ import React, { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import openModalContext from "../context/openModalContext";
 
-const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
+const WorkCard = ({
+  view,
+  thumbnail,
+  source,
+  title,
+  text,
+  projectId,
+  usedLang,
+}) => {
   // const [cookie, setCookie] = useCookies(["email"]);
   const [showFullText, setShowFullText] = useState(false);
 
@@ -15,6 +23,7 @@ const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
     setSource,
     setView,
     setProjectId,
+    setUsedLang,
   } = useContext(openModalContext);
 
   const toggleText = () => {
@@ -34,7 +43,15 @@ const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
   };
   const displayText = showFullText ? text : truncateText(text, 150);
 
-  const openModal = (view, thumbnail, source, title, text, projectId) => {
+  const openModal = (
+    view,
+    thumbnail,
+    source,
+    title,
+    text,
+    projectId,
+    usedLang
+  ) => {
     setOpenModal(true);
     setThumbnail(thumbnail);
     setTitle(title);
@@ -42,27 +59,27 @@ const WorkCard = ({ view, thumbnail, source, title, text, projectId }) => {
     setView(view);
     setSource(source);
     setProjectId(projectId);
+    setUsedLang(usedLang);
   };
 
   return (
-    <div>
-      <div className="project-card">
-        <div
-          onClick={() =>
-            openModal(view, thumbnail, source, title, text, projectId)
-          }
-        >
-          <img src={thumbnail} alt={thumbnail} />
-        </div>
-        <h2 className="project-title">{title}</h2>
-        <div className="pro-details">
-          <p>{displayText}</p>
-          {text.length > 150 && (
-            <span className="read-more-btn" onClick={toggleText}>
-              {showFullText ? "Read Less" : "Read More"}
-            </span>
-          )}
-        </div>
+    <div
+      className="project-card"
+      onClick={() =>
+        openModal(view, thumbnail, source, title, text, projectId, usedLang)
+      }
+    >
+      <div>
+        <img src={thumbnail} alt={thumbnail} />
+      </div>
+      <h2 className="project-title">{title}</h2>
+      <div className="pro-details">
+        <p>{displayText}</p>
+        {text.length > 150 && (
+          <span className="read-more-btn" onClick={toggleText}>
+            {showFullText ? "Read Less" : "Read More"}
+          </span>
+        )}
       </div>
     </div>
   );

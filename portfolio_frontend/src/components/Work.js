@@ -63,6 +63,7 @@ const Work = () => {
                 view={val.view}
                 source={val.source}
                 projectId={val._id}
+                usedLang={val.usedLang}
               />
             );
           })}
