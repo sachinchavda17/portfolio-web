@@ -8,6 +8,9 @@ const authRoute = require("./routes/auth");
 const nodemailerRoute = require("./routes/nodemailer");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+
+
+app.use(express.static(path.resolve(__dirname, 'build')));
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
@@ -34,6 +37,9 @@ app.use(
     secret: "hey",
   })
 );
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
 app.use("/auth", authRoute);
 app.use("/project", projectRoute);
 app.use("/contact", nodemailerRoute);
