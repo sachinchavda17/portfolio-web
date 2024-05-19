@@ -81,7 +81,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/project" element={<Project />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/Skill" element={<Skill />} />
+          <Route path="/Skills" element={<Skill />} />
           {cookie.email && <Route path="/upload" element={<UploadProject />} />}
           {cookie.email && (
             <Route path="/edit/:projectId" element={<ProjectEdit />} />

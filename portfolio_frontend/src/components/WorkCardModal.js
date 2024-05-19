@@ -58,7 +58,7 @@ const WorkCardModal = () => {
                 target="_blank"
                 onClick={closeModal}
               >
-                View
+                View Live
               </NavLink>
               {cookie?.email && (
                 <NavLink
@@ -75,7 +75,7 @@ const WorkCardModal = () => {
                 target="_blank"
                 onClick={closeModal}
               >
-                Source
+                View Code
               </NavLink>
             </div>
           </div>

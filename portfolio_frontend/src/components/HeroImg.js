@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { RESUME_URL } from "../utils/config";
 import Typewriter from "typewriter-effect";
 import img from "../assets/hero-img.jpg";
+import HeroBgAnimation from "./BgAnimation";
 function HeroImg() {
   const Roles = [
     "Full Stack Developer",
@@ -12,6 +13,30 @@ function HeroImg() {
     "Python Developer",
     "Programmer",
   ];
+  const HeroBg = {
+    position: "absolute",
+    display: "flex",
+    justifyContent: "end",
+    top: "0",
+    right: "0",
+    bottom: "0",
+    left: "0",
+    width: "100%",
+    height: "100%",
+    maxWidth: "1360px",
+    overflow: "hidden",
+    padding: "0 30px",
+    top: " 50%",
+    left: "50%",
+    webkitTransform: "translateX(-50%) translateY(-50%)",
+    transform: " translateX(-50%) translateY(-50%)",
+
+    // @media (max-width: 960px) {
+    //   justify-content: center;
+    //   padding: 0 0px;
+    // }
+  }
+
   return (
     <div className="hero">
       <div className="mask">
@@ -43,7 +68,10 @@ function HeroImg() {
           </div>
         </div>
         <div className="right">
-          <img src={img} alt="" />
+          <img src={img} alt="" style={{ zIndex: "10" }} />
+          {/* <div style={HeroBg}>
+            <HeroBgAnimation />
+          </div> */}
         </div>
       </div>
     </div>

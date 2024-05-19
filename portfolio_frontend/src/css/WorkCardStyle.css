@@ -21,6 +21,13 @@
     overflow: hidden;
     width: 350px;
     cursor: pointer;
+    box-shadow: 0.4rem 0.4rem 1rem #4c4848, -0.4rem -0.4rem 1rem #333;
+}
+.project-card:hover {
+    box-shadow: 0.4rem 0.4rem 1rem #4c4848 inset, -0.4rem -0.4rem 1rem #333 inset;
+    /* box-shadow: 0 0 20px 0 #4c4848; */
+    /* transform: translateY(-15px); */
+    transform: scale(.97);
 }
 
 .project-card img {
@@ -29,13 +36,9 @@
     height: 180px;
     object-fit: cover;
     cursor: pointer;
-    transform: translateY(0);
+    /* transform: translateY(0); */
+    transform: scale(0);
 
-}
-
-.project-card:hover {
-    box-shadow: 0 0 20px 0 #4c4848;
-    transform: translateY(-15px);
 }
 
 .project-title {
@@ -58,10 +61,13 @@
     display: flex;
     padding: .5rem 0;
     justify-content: space-between;
+    gap: 1rem ;
 }
 
 .pro-btns .btn {
     padding: .5rem 1rem;
+    width: 100%;
+    text-align: center;
 }
 
 .read-more-btn {

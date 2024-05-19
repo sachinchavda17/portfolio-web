@@ -8,13 +8,22 @@
   padding: 1rem;
   z-index: 10;
 }
-.portfolio:hover{
-color: #a337ff;
+.portfolio{
+  font-size: 1.5rem;
+  font-weight: 400;
 }
+.portfolio span{
+  color: #a337ff;
+  font-weight: 600;
+}
+/* .portfolio:hover{
+color: #a337ff;
+} */
 
 .header-bg {
   background-color: rgba(0, 0, 0, 0.85);
   transition: 0.5s;
+  border-bottom: 1px solid #a337ff;
 }
 
 .nav-menu {

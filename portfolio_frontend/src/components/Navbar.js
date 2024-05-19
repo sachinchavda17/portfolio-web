@@ -29,9 +29,10 @@ const Navbar = () => {
   window.addEventListener("scroll", changeColor);
 
   return (
-    <div className={color ? "header header-bg" : "header"}>
+    <div className={color ? "header header-bg" : "header "}>
       <Link to="/">
-        <h1 className="portfolio">Portfolio</h1>
+        {/* <h1 className="portfolio">Portfolio</h1> */}
+        <h1 className="portfolio"><span>&lt;</span> Sachin<span>/</span> Chavda <span>&gt; </span></h1>
       </Link>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
         <li>
@@ -43,9 +44,9 @@ const Navbar = () => {
         <li>
           <Link to="/contact">Contact</Link>
         </li>
-        {/* <li>
-          <Link to="/skill">Skill</Link>
-        </li> */}
+        <li>
+          <Link to="/skills">Skills</Link>
+        </li>
         <li>
           <Link to={GithubRepo} target="_blank">Github</Link>
         </li>
