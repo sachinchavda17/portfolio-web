@@ -13,6 +13,9 @@ import Skill from "./routes/Skill.js";
 import WorkCardModal from "./components/WorkCardModal.js";
 import openModalContext from "./context/openModalContext.js";
 import IsNetworkConnect from "./components/IsNetworkConnect.js";
+import toast, { Toaster } from 'react-hot-toast';
+
+
 function App() {
   const [cookie, setCookie] = useCookies(["email"]);
   const [openModal, setOpenModal] = useState(false);
@@ -25,6 +28,10 @@ function App() {
   const [usedLang, setUsedLang] = useState([]);
 
   const [isOnline, setIsOnline] = useState(window.navigator.onLine);
+  document.addEventListener("contextmenu", (e) => {
+    toast.error("Inspect Element Not Allowed!!!")
+    e.preventDefault()
+  })
 
   useEffect(() => {
     const handleOnline = () => {
@@ -73,6 +80,7 @@ function App() {
   };
   return (
     <>
+      <Toaster />
       <openModalContext.Provider value={contextValue}>
         <Routes>
           <Route path="/" element={<Home />}>

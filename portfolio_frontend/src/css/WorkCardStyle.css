@@ -22,10 +22,6 @@
     width: 350px;
     cursor: pointer;
     box-shadow: 0.4rem 0.4rem 1rem #4c4848, -0.4rem -0.4rem 1rem #333;
-
-
-
-
 }
 .project-card:hover {
     box-shadow: 0.4rem 0.4rem 1rem #4c4848 inset, -0.4rem -0.4rem 1rem #333 inset;
