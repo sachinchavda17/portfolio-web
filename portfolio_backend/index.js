@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 const projectRoute = require("./routes/project");
 const authRoute = require("./routes/auth");
 const nodemailerRoute = require("./routes/nodemailer");
@@ -14,16 +14,14 @@ app.use(express.json());
 app.use(bodyParser.json());
 require("dotenv").config();
 
-const mongoUrl = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster1.zota6hd.mongodb.net/${process.env.MONGO_CLUSTER}`;
-
 try {
   mongoose
-    .connect(mongoUrl, {
+    .connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
     .then(() => console.log("Connected to Mongo!"))
-    .catch((err) => console.log(`Error while connecting with mongo ${err}`));
+    .catch((err) => console.log(`Error while connecting with Mongo ${err}`));
 } catch (err) {
   console.log(`Error while connecting with mongo ${err}`);
 }
@@ -35,6 +33,9 @@ app.use(
     secret: "hey",
   })
 );
+app.get("/", (req, res) => {
+  res.send("Server is Running....")
+})
 app.use("/auth", authRoute);
 app.use("/project", projectRoute);
 app.use("/contact", nodemailerRoute);
