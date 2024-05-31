@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import UploadWidget from "./UploadWidget";
 import ErrorMsg from "./ErrorMsg";
 import SuccessMsg from "./SuccessMsg";
-import { FaSpinner } from "react-icons/fa";
+import { FaDumpster, FaSpinner } from "react-icons/fa";
 
 const UploadForm = () => {
   const [title, setTitle] = useState("");
@@ -13,8 +13,8 @@ const UploadForm = () => {
   const [text, setText] = useState("");
   const [view, setView] = useState("");
   const [source, setSource] = useState("");
-  const [imgUrl, setImgUrl] = useState(
-    "https://res.cloudinary.com/dbm00gxt1/image/upload/v1707214230/xscspg4gdvkminmcpvyq.jpg"
+  const [imgUrls, setImgUrls] = useState(
+    ["https://res.cloudinary.com/dbm00gxt1/image/upload/v1707214230/xscspg4gdvkminmcpvyq.jpg"]
   );
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -33,10 +33,10 @@ const UploadForm = () => {
   const submitProject = async () => {
     try {
       setLoading(true);
-      const data = { title, thumbnail: imgUrl, text, view, source, usedLang };
+      const data = { title, thumbnails: imgUrls, text, view, source, usedLang };
       if (
         !data.title ||
-        !data.thumbnail ||
+        data.thumbnails.length === 0 ||
         !data.text ||
         !data.view ||
         !data.source ||
@@ -47,7 +47,7 @@ const UploadForm = () => {
       }
       const response = await makePOSTRequest("/project/create", data);
       if (response.err) {
-        setError("Could not create Project");
+        setError("Could not create Project" + response.err);
       } else {
         setSuccess("Project created successfully");
         setTimeout(() => {
@@ -66,6 +66,12 @@ const UploadForm = () => {
     setSuccess("");
     setError("");
   };
+  const handleImgDelete = (index) => {
+    const updatedThumbnails = [...imgUrls];
+    updatedThumbnails.splice(index, 1);
+    // setOneProject({ ...item, thumbnails: updatedThumbnails });
+    setImgUrls(updatedThumbnails)
+  };
 
   return (
     <div className="upload-container">
@@ -81,9 +87,21 @@ const UploadForm = () => {
           }}
         />
 
-        <label htmlFor="thumbnail">Thumbnail </label>
-        {imgUrl && <img src={imgUrl} alt={imgUrl} className="thumbnail-img" />}
-        <UploadWidget setUrl={setImgUrl} />
+        <label htmlFor="thumbnail">Thumbnails </label>
+        {/* {imgUrls && <img src={imgUrl} alt={imgUrl} className="thumbnail-img" />} */}
+        {/* {imgUrls.map((url, index) => (
+            <img key={index} src={url} alt={`Thumbnail ${index}`} className="thumbnail-img" />
+          ))} */}
+        <div className="project-edit-img-container">
+          {imgUrls.map((url, index) => (
+            <div className="edit-img-container" key={index}>
+              <img src={url} alt={url} className="thumbnail-img" />
+              <div className="edit-delete-btn" onClick={() => handleImgDelete(index)}><FaDumpster /></div>
+            </div>
+          ))}
+        </div>
+        {/* <UploadWidget setUrl={setImgUrl} /> */}
+        <UploadWidget setUrl={(url) => setImgUrls([...imgUrls, url])} />
 
         <label htmlFor="view">View Url </label>
         <input

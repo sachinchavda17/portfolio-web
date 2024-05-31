@@ -30,16 +30,6 @@ textarea {
   justify-content: space-around;
 }
 
-.thumbnail-img {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
-}
-
-
-
 .lang-list {
   display: flex;
   flex-wrap: wrap;
@@ -52,7 +42,7 @@ textarea {
   border-radius: 5px;
   color: #f4f4f4;
   background: rgba(255, 255, 255, 0.1);
-  border: 2px solid  rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .lang-item:focus {
@@ -85,6 +75,49 @@ textarea {
   border-radius: 10px;
   cursor: pointer;
 }
+
 .add-lang-button:hover {
   background-color: rgb(161, 159, 159);
+}
+
+.thumbnail-img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
+}
+
+
+.project-edit-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  gap: 10px;
+
+}
+.edit-img-container {
+  position: relative;
+  width: 49%;
+}
+
+.edit-delete-btn {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 0, 0 );
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: black;
+  cursor: pointer;
+}
+.edit-img-container:hover{
+  opacity: .8;
+}
+.edit-img-container:hover .edit-delete-btn {
+  display: block;
+  opacity: 1;
 }

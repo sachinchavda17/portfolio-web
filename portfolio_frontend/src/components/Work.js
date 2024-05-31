@@ -57,7 +57,7 @@ const Work = () => {
             return (
               <WorkCard
                 key={ind}
-                thumbnail={val.thumbnail}
+                thumbnails={val.thumbnails}
                 title={val.title}
                 text={val.text}
                 view={val.view}

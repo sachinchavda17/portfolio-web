@@ -4,12 +4,13 @@ import { useContext, useEffect } from "react";
 import openModalContext from "../context/openModalContext";
 import { FaTimes } from "react-icons/fa";
 import { useCookies } from "react-cookie";
+import Carousel from "./Carosal";
 
 const WorkCardModal = () => {
   const {
     openModal,
     setOpenModal,
-    thumbnail,
+    thumbnails,
     title,
     text,
     view,
@@ -30,6 +31,7 @@ const WorkCardModal = () => {
     };
   }, []);
 
+
   return (
     <>
       {/* <div className="modal-project " > */}
@@ -39,7 +41,8 @@ const WorkCardModal = () => {
             <div className="close-button">
               <FaTimes size={20} onClick={closeModal} />
             </div>
-            <img src={thumbnail} alt="no" className="modal-image" />
+            {/* <img src={thumbnail} alt="no" className="modal-image" /> */}
+            <Carousel images={thumbnails}/>
             <div className="modal-title">{title}</div>
             <div className="modal-tags">
               {usedLang.map((lang, ind) => {

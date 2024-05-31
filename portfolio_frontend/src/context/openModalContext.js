@@ -3,8 +3,8 @@ import { createContext } from "react";
 const openModalContext = createContext({
   openModal: false,
   setOpenModal: (openModal) => {},
-  thumbnail: null,
-  setThumbnail: (thumbnail) => {},
+  thumbnails: null,
+  setThumbnails: (thumbnails) => {},
   title: null,
   setTitle: (title) => {},
   text: null,

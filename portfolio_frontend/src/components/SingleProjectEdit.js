@@ -6,10 +6,11 @@ import UploadWidget from "./UploadWidget";
 import ErrorMsg from "./ErrorMsg";
 import SuccessMsg from "./SuccessMsg";
 import openModalContext from "../context/openModalContext";
-import { FaSpinner } from "react-icons/fa";
+import { FaDumpster, FaSpinner } from "react-icons/fa";
 import ConfirmModal from "./ConfirmModal";
 
 const SingleProjectEdit = () => {
+  // State variables
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [view, setView] = useState("");
@@ -19,14 +20,21 @@ const SingleProjectEdit = () => {
   const [oneProject, setOneProject] = useState([]);
   const [usedLang, setUsedLang] = useState([]);
   const { projectId } = useParams();
+  const [thumbnailsForThis, setThumbnailForThis] = useState([])
 
+   // Error and success messages
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  // Context
   const { setOpenModal } = useContext(openModalContext);
+
+  // Loading states
   const [loading, setLoading] = useState(null);
   const [loadingUpdate, setLoadingUpdate] = useState(null);
   const [loadingDelete, setLoadingDelete] = useState(null);
 
+  // Confirmation modal state
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const closeErrorSuccess = () => {
@@ -34,10 +42,12 @@ const SingleProjectEdit = () => {
     setSuccess("");
   };
 
+  // Add a language to the list
   const handleAddLang = () => {
     setUsedLang([...usedLang, ""]);
   };
 
+  // Remove a language from the list
   const handleRemoveLang = (index) => {
     setUsedLang(usedLang.filter((lang, i) => i !== index));
   };
@@ -54,6 +64,9 @@ const SingleProjectEdit = () => {
         setOneProject(response.data);
         if (response.data.length > 0 && response.data[0].usedLang) {
           setUsedLang(response.data[0].usedLang);
+        }
+        if (response.data.length > 0 && response.data[0].thumbnails) {
+          setThumbnailForThis(response.data[0].thumbnails)
         }
       } catch (err) {
         setError("Error fetching project data");
@@ -72,7 +85,7 @@ const SingleProjectEdit = () => {
       setLoadingUpdate(true);
       const data = {
         title: title.trim() || item.title || "",
-        thumbnail: imgUrl.trim() || item.thumbnail || "",
+        thumbnails: thumbnailsForThis.length > 0 ? thumbnailsForThis.filter(url => url.trim() !== "") : item.usedLang || [] || item.thumbnails || "",
         text: text.trim() || item.text || "",
         view: view.trim() || item.view || "",
         source: source.trim() || item.source || "",
@@ -123,6 +136,22 @@ const SingleProjectEdit = () => {
     setShowConfirmModal(false);
   };
 
+  const handleImgDelete = (index) => {
+    const updatedThumbnails = [...thumbnailsForThis];
+    updatedThumbnails.splice(index, 1);
+    // setOneProject({ ...item, thumbnails: updatedThumbnails });
+    setThumbnailForThis(updatedThumbnails)
+  };
+
+  const handleImgUpload = (url) => {
+    // const updatedThumbnails = [...item.thumbnails, url];
+    const updatedThumbnails = [...thumbnailsForThis, url];
+    // setOneProject({ ...item, thumbnails: updatedThumbnails });
+    setThumbnailForThis(updatedThumbnails)
+  };
+
+  console.log("item ", item.thumbnails)
+
   return (
     <div className="upload-container">
       {loading ? (
@@ -146,12 +175,23 @@ const SingleProjectEdit = () => {
             />
             <label htmlFor="thumbnail">Edit Thumbnail </label>
             <label htmlFor="">{uploadedFileName} </label>
-            <img
-              src={item.thumbnail}
-              alt={item.thumbnail}
-              className="thumbnail-img"
-            />
-            <UploadWidget setUrl={setImgUrl} setName={setUploadedFileName} />
+
+            {thumbnailsForThis && (
+              <div className="project-edit-img-container">
+                {thumbnailsForThis.map((url, index) => (
+                  <div className="edit-img-container" key={index}>
+                    <img src={url} alt={url} className="thumbnail-img" />
+                    <div className="edit-delete-btn" onClick={() => handleImgDelete(index)}><FaDumpster /></div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {/* <img src={item.thumbnails[0]} className="thumbnail-img" /> */}
+
+            <UploadWidget setUrl={(url) => {
+              setImgUrl(url);
+              handleImgUpload(url);
+            }} setName={setUploadedFileName} />
             <label htmlFor="view">Edit View Url </label>
             <input
               type="text"
@@ -262,8 +302,9 @@ const SingleProjectEdit = () => {
             />
           )}
         </>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 

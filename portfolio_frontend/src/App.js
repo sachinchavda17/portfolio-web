@@ -19,7 +19,7 @@ import toast, { Toaster } from 'react-hot-toast';
 function App() {
   const [cookie, setCookie] = useCookies(["email"]);
   const [openModal, setOpenModal] = useState(false);
-  const [thumbnail, setThumbnail] = useState("");
+  const [thumbnails, setThumbnails] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [view, setView] = useState("");
@@ -63,8 +63,8 @@ function App() {
   const contextValue = {
     openModal,
     setOpenModal,
-    thumbnail,
-    setThumbnail,
+    thumbnails,
+    setThumbnails,
     title,
     setTitle,
     text,

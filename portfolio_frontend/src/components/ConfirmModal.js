@@ -5,9 +5,9 @@ const ConfirmModal = ({ message, onConfirm, onCancel, setShowConfirmModal }) => 
     useEffect(() => {
         document.body.style.overflowY = "hidden";
         return () => {
-            document.body.style.overflowY = "scroll";
+          document.body.style.overflowY = "scroll";
         };
-    }, []);
+      }, []);
     return (
         <div className="confirm-modal-overlay">
             <div className="confirm-modal">

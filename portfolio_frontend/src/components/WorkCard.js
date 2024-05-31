@@ -2,10 +2,11 @@ import "../css/WorkCardStyle.css";
 import React, { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import openModalContext from "../context/openModalContext";
+import Carousel from "./Carosal";
 
 const WorkCard = ({
   view,
-  thumbnail,
+  thumbnails,
   source,
   title,
   text,
@@ -17,7 +18,7 @@ const WorkCard = ({
 
   const {
     setOpenModal,
-    setThumbnail,
+    setThumbnails,
     setTitle,
     setText,
     setSource,
@@ -45,7 +46,7 @@ const WorkCard = ({
 
   const openModal = (
     view,
-    thumbnail,
+    thumbnails,
     source,
     title,
     text,
@@ -53,7 +54,7 @@ const WorkCard = ({
     usedLang
   ) => {
     setOpenModal(true);
-    setThumbnail(thumbnail);
+    setThumbnails(thumbnails);
     setTitle(title);
     setText(text);
     setView(view);
@@ -66,11 +67,13 @@ const WorkCard = ({
     <div
       className="project-card"
       onClick={() =>
-        openModal(view, thumbnail, source, title, text, projectId, usedLang)
+        openModal(view, thumbnails, source, title, text, projectId, usedLang)
       }
     >
       <div>
-        <img src={thumbnail} alt={thumbnail} />
+        {/* <img src={thumbnail} alt={thumbnail} /> */}
+        <Carousel images={thumbnails} showBtn={false}/>
+
       </div>
       <h2 className="project-title">{title}</h2>
       <div className="pro-details">

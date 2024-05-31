@@ -71,10 +71,10 @@ const skillsData = [
           image:
             "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg",
         },
-        {
-          name: "Firebase",
-          image: "https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg",
-        },
+        // {
+        //   name: "Firebase",
+        //   image: "https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg",
+        // },
       ],
     },
     {
@@ -113,6 +113,11 @@ const skillsData = [
         },
         {
           name: "Netlify",
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49EFrgvgSQ3MhNyESEdJtW3arzl5fQMjNq41r04nlxw&s",
+        },
+        {
+          name: "Vercel",
           image:
             "https://seeklogo.com/images/N/netlify-logo-BD8F8A77E2-seeklogo.com.png",
         },

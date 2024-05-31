@@ -4,7 +4,7 @@
 }
 
 .project-container {
-    max-width:90%;
+    max-width: 90%;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -22,7 +22,9 @@
     width: 350px;
     cursor: pointer;
     box-shadow: 0.4rem 0.4rem 1rem #4c4848, -0.4rem -0.4rem 1rem #333;
+    transition: all .5s;
 }
+
 .project-card:hover {
     box-shadow: 0.4rem 0.4rem 1rem #4c4848 inset, -0.4rem -0.4rem 1rem #333 inset;
     /* box-shadow: 0 0 20px 0 #4c4848; */
@@ -58,7 +60,7 @@
     display: flex;
     padding: .5rem 0;
     justify-content: space-between;
-    gap: 1rem ;
+    gap: 1rem;
 }
 
 .pro-btns .btn {

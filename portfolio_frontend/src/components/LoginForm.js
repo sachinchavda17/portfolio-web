@@ -32,7 +32,7 @@ const LoginForm = () => {
         return;
       }
       const expirationDate = new Date();
-      expirationDate.setTime(expirationDate.getTime() + 30 * 60 * 1000);
+      expirationDate.setTime(expirationDate.getTime() + 60 * 60 * 1000);
 
       // const newEncodedEmail = encodeEmail(email) + mainEncodedEmail(email);
       setCookie("email", encodeEmail(email), {

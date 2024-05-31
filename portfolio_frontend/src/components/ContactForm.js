@@ -56,7 +56,7 @@ const Form = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email">Your Email</label>
       <input
         type="email"
         name="email"
@@ -89,7 +89,7 @@ const Form = () => {
             />
           </div>
         ) : (
-          "Submit"
+          "Send Email"
         )}
       </button>
     </form>

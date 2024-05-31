@@ -7,6 +7,7 @@
   align-items: center;
   padding: 1rem;
   z-index: 10;
+  transition:  all 1s;
 }
 .portfolio{
   font-size: 1.5rem;
@@ -23,7 +24,8 @@ color: #a337ff;
 .header-bg {
   background-color: rgba(0, 0, 0, 0.85);
   transition: 0.5s;
-  border-bottom: 1px solid #a337ff;
+  border-bottom: .5px solid #a337ff;
+  box-shadow: 0 0 20px #a337ff;
 }
 
 .nav-menu {

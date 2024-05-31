@@ -5,8 +5,8 @@ const Project = new mongoose.Schema({
     type: String,
     require: true,
   },
-  thumbnail: {
-    type: String,
+  thumbnails: {
+    type: Array,
     required: true,
   },
   text: {
