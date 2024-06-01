@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './carouselStyle.css'; 
+import React, { useEffect, useState } from 'react';
+import './carouselStyle.css';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-const Carousel = ({ images, showBtn = true }) => {
+const Carousel = ({ images, showBtn = true, autoplay = true, autoplayInterval = 5000  }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNextSlide = () => {
@@ -11,6 +11,18 @@ const Carousel = ({ images, showBtn = true }) => {
   const goToPrevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
+
+  useEffect(() => {
+    let timeoutId;
+
+    if (autoplay && images.length > 1) {
+      timeoutId = setTimeout(() => {
+        goToNextSlide();
+      }, autoplayInterval);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [currentIndex, images.length, autoplay, autoplayInterval]);
 
   return (
     <div className="carousel-container">
