@@ -1,11 +1,11 @@
 import React from "react";
-import "../css/HeroImgStyle.css";
-import IntroImg from "../assets/intro-bg.jpg";
+import "./HeroImgStyle.css";
+import IntroImg from "../../assets/intro-bg.jpg";
 import { Link } from "react-router-dom";
-import { RESUME_URL } from "../utils/config";
+import { RESUME_URL } from "../../utils/config";
 import Typewriter from "typewriter-effect";
-import img from "../assets/hero-img.jpg";
-import HeroBgAnimation from "./BgAnimation";
+import img from "../../assets/hero-img.jpg";
+
 function HeroImg() {
   const Roles = [
     "Full Stack Developer",

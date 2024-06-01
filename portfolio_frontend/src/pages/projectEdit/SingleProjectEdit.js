@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../css/SingleProjectEdit.css";
-import { makeGETRequest, makePOSTRequest } from "../utils/serverHerlper";
+import "./SingleProjectEdit.css";
+import { makeGETRequest, makePOSTRequest } from "../../utils/serverHerlper";
 import { useParams, useNavigate } from "react-router-dom";
-import UploadWidget from "./UploadWidget";
-import ErrorMsg from "./ErrorMsg";
-import SuccessMsg from "./SuccessMsg";
-import openModalContext from "../context/openModalContext";
+import UploadWidget from "../uploadProject/UploadWidget";
+import ErrorMsg from "../../components/ErrorMsg";
+import ThumnailsHandle from "../../components/ThumnailsHandle";
+import SuccessMsg from "../../components/SuccessMsg";
+import openModalContext from "../../context/openModalContext";
 import { FaDumpster, FaSpinner } from "react-icons/fa";
-import ConfirmModal from "./ConfirmModal";
-
+import ConfirmModal from "../../components/ConfirmModal";
 const SingleProjectEdit = () => {
   // State variables
   const [title, setTitle] = useState("");
@@ -20,9 +20,9 @@ const SingleProjectEdit = () => {
   const [oneProject, setOneProject] = useState([]);
   const [usedLang, setUsedLang] = useState([]);
   const { projectId } = useParams();
-  const [thumbnailsForThis, setThumbnailForThis] = useState([])
+  const [thumbnailsForThis, setThumbnailForThis] = useState([]);
 
-   // Error and success messages
+  // Error and success messages
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -66,7 +66,7 @@ const SingleProjectEdit = () => {
           setUsedLang(response.data[0].usedLang);
         }
         if (response.data.length > 0 && response.data[0].thumbnails) {
-          setThumbnailForThis(response.data[0].thumbnails)
+          setThumbnailForThis(response.data[0].thumbnails);
         }
       } catch (err) {
         setError("Error fetching project data");
@@ -77,7 +77,6 @@ const SingleProjectEdit = () => {
     getData();
   }, [projectId]);
 
-
   const item = oneProject[0] || {};
 
   const submitProject = async () => {
@@ -85,11 +84,17 @@ const SingleProjectEdit = () => {
       setLoadingUpdate(true);
       const data = {
         title: title.trim() || item.title || "",
-        thumbnails: thumbnailsForThis.length > 0 ? thumbnailsForThis.filter(url => url.trim() !== "") : item.usedLang || [] || item.thumbnails || "",
+        thumbnails:
+          thumbnailsForThis.length > 0
+            ? thumbnailsForThis.filter((url) => url.trim() !== "")
+            : item.usedLang || [] || item.thumbnails || "",
         text: text.trim() || item.text || "",
         view: view.trim() || item.view || "",
         source: source.trim() || item.source || "",
-        usedLang: usedLang.length > 0 ? usedLang.filter(lang => lang.trim() !== "") : item.usedLang || [],
+        usedLang:
+          usedLang.length > 0
+            ? usedLang.filter((lang) => lang.trim() !== "")
+            : item.usedLang || [],
       };
 
       const response = await makePOSTRequest(
@@ -136,22 +141,6 @@ const SingleProjectEdit = () => {
     setShowConfirmModal(false);
   };
 
-  const handleImgDelete = (index) => {
-    const updatedThumbnails = [...thumbnailsForThis];
-    updatedThumbnails.splice(index, 1);
-    // setOneProject({ ...item, thumbnails: updatedThumbnails });
-    setThumbnailForThis(updatedThumbnails)
-  };
-
-  const handleImgUpload = (url) => {
-    // const updatedThumbnails = [...item.thumbnails, url];
-    const updatedThumbnails = [...thumbnailsForThis, url];
-    // setOneProject({ ...item, thumbnails: updatedThumbnails });
-    setThumbnailForThis(updatedThumbnails)
-  };
-
-  console.log("item ", item.thumbnails)
-
   return (
     <div className="upload-container">
       {loading ? (
@@ -175,23 +164,11 @@ const SingleProjectEdit = () => {
             />
             <label htmlFor="thumbnail">Edit Thumbnail </label>
             <label htmlFor="">{uploadedFileName} </label>
-
-            {thumbnailsForThis && (
-              <div className="project-edit-img-container">
-                {thumbnailsForThis.map((url, index) => (
-                  <div className="edit-img-container" key={index}>
-                    <img src={url} alt={url} className="thumbnail-img" />
-                    <div className="edit-delete-btn" onClick={() => handleImgDelete(index)}><FaDumpster /></div>
-                  </div>
-                ))}
-              </div>
-            )}
-            {/* <img src={item.thumbnails[0]} className="thumbnail-img" /> */}
-
-            <UploadWidget setUrl={(url) => {
-              setImgUrl(url);
-              handleImgUpload(url);
-            }} setName={setUploadedFileName} />
+            <ThumnailsHandle
+              thumbnails={thumbnailsForThis}
+              setThumbnails={setThumbnailForThis}
+              setUploadedFileName={setUploadedFileName}
+            />
             <label htmlFor="view">Edit View Url </label>
             <input
               type="text"
@@ -245,7 +222,9 @@ const SingleProjectEdit = () => {
               value={text === "" ? item.text || "" : text}
               onChange={(e) => setText(e.target.value)}
             />
-            {error && <ErrorMsg errText={error} closeError={closeErrorSuccess} />}
+            {error && (
+              <ErrorMsg errText={error} closeError={closeErrorSuccess} />
+            )}
             {success && (
               <SuccessMsg
                 successText={success}
@@ -302,9 +281,8 @@ const SingleProjectEdit = () => {
             />
           )}
         </>
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 };
 

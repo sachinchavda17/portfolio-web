@@ -1,8 +1,8 @@
-import "../css/WorkCardStyle.css";
+import "./WorkCardStyle.css";
 import React, { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
-import openModalContext from "../context/openModalContext";
-import Carousel from "./Carosal";
+import openModalContext from "../../context/openModalContext";
+import Carousel from "./Carousel";
 
 const WorkCard = ({
   view,

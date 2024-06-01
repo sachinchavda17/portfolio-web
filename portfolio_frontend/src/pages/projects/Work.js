@@ -1,10 +1,10 @@
-import "../css/WorkCardStyle.css";
-import "../css/Loading.css";
+import "./WorkCardStyle.css";
+import "../../css/Loading.css";
 import React, { useEffect, useState } from "react";
 import WorkCard from "./WorkCard";
-import { makeGETRequest } from "../utils/serverHerlper";
+import { makeGETRequest } from "../../utils/serverHerlper";
 import { FaSpinner } from "react-icons/fa";
-import ErrorMsg from "./ErrorMsg";
+import ErrorMsg from "../../components/ErrorMsg";
 
 const Work = () => {
   const [projectData, setProjectData] = useState([]);

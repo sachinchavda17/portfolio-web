@@ -1,12 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const UploadWidget = ({ setUrl }) => {
+const UploadWidget = ({ onUpload }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [originalFileName, setOriginalFileName] = useState("");
 
+  // useEffect(() => {
+  //   cloudinaryRef.current = window.cloudinary;
+  //   widgetRef.current = cloudinaryRef.current.createUploadWidget(
+  //     {
+  //       cloudName: "dbm00gxt1",
+  //       uploadPreset: "Portfolio",
+  //     },
+  //     function (error, result) {
+  //       if (!error && result.event === "success") {
+  //         setUrl(result.info.secure_url);
+  //         setOriginalFileName(result.info.original_filename);
+  //         setSuccess("Image uploaded successfully");
+  //         setError("");
+  //       } else {
+  //         if (error) {
+  //           setError("Error uploading image");
+  //           setSuccess("");
+  //         }
+  //       }
+  //     }
+  //   );
+  // }, [setUrl]);
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
@@ -16,7 +38,7 @@ const UploadWidget = ({ setUrl }) => {
       },
       function (error, result) {
         if (!error && result.event === "success") {
-          setUrl(result.info.secure_url);
+          onUpload(result.info.secure_url); // Use the callback to handle the URL
           setOriginalFileName(result.info.original_filename);
           setSuccess("Image uploaded successfully");
           setError("");
@@ -28,7 +50,7 @@ const UploadWidget = ({ setUrl }) => {
         }
       }
     );
-  }, [setUrl]);
+  }, [onUpload]);
 
   const openWidget = () => {
     widgetRef.current.open();

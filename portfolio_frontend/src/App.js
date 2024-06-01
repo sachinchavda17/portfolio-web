@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Home from "./routes/Home";
-import Project from "./routes/Project";
-import Contact from "./routes/Contact";
-import About from "./routes/About";
-import UploadProject from "./routes/UploadProject";
+import HomePage from "./pages/home/HomePage";
+import ProjectPage from  "./pages/projects/ProjectPage";
+import ContactPage from  "./pages/contact/ContactPage";
+import AboutPage from  "./pages/about/AboutPage";
+import UploadProjectPage from "./pages/uploadProject/UploadProjectPage";
 import { Route, Routes, Navigate } from "react-router-dom";
-import LoginForm from "./components/LoginForm";
-import SignupForm from "./components/SignupForm";
+import LoginFormPage from "./pages/login/LoginFormPage"
+import SignupFormPage from "./pages/login/SignupFormPage";
 import { useCookies } from "react-cookie";
-import ProjectEdit from "./routes/ProjectEdit";
-import Skill from "./routes/Skill.js";
-import WorkCardModal from "./components/WorkCardModal.js";
-import openModalContext from "./context/openModalContext.js";
-import IsNetworkConnect from "./components/IsNetworkConnect.js";
+import ProjectEditPage from "./pages/projectEdit/ProjectEditPage"
+import SkillPage from "./pages/skill/SkillPage"
+import WorkCardModal from "./pages/projects/WorkCardModal"
+import openModalContext from "./context/openModalContext";
+import IsNetworkConnect from "./components/IsNetworkConnect";
 import toast, { Toaster } from 'react-hot-toast';
 
 
@@ -83,19 +83,19 @@ function App() {
       <Toaster />
       <openModalContext.Provider value={contextValue}>
         <Routes>
-          <Route path="/" element={<Home />}>
+          <Route path="/" element={<HomePage />}>
             <Route path="/" element={<WorkCardModal />} />
           </Route>
-          <Route path="/about" element={<About />} />
-          <Route path="/project" element={<Project />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/Skills" element={<Skill />} />
-          {cookie.email && <Route path="/upload" element={<UploadProject />} />}
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/project" element={<ProjectPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/Skills" element={<SkillPage />} />
+          {cookie.email && <Route path="/upload" element={<UploadProjectPage />} />}
           {cookie.email && (
-            <Route path="/edit/:projectId" element={<ProjectEdit />} />
+            <Route path="/edit/:projectId" element={<ProjectEditPage />} />
           )}
-          {!cookie.email && <Route path="/signup" element={<SignupForm />} />}
-          {!cookie.email && <Route path="/login" element={<LoginForm />} />}
+          {!cookie.email && <Route path="/signup" element={<SignupFormPage />} />}
+          {!cookie.email && <Route path="/login" element={<LoginFormPage />} />}
           <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
       </openModalContext.Provider>

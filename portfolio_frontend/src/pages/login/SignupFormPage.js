@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "../css/LoginFormStyle.css";
+import "./LoginFormStyle.css";
 import { FaEye, FaSpinner, FaSmile, FaTimes } from "react-icons/fa";
-import { makePOSTRequest } from "../utils/serverHerlper";
+import { makePOSTRequest } from "../../utils/serverHerlper";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import ErrorMsg from "./ErrorMsg";
-import PasswordInput from "./PasswordInput";
+import ErrorMsg from "../../components/ErrorMsg";
+import PasswordInput from "../../components/PasswordInput";
 
 const SignupForm = () => {
   const [email, setEmail] = useState("");

@@ -1,10 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-import "../css/WordCardModalStyle.css";
+import "./WordCardModalStyle.css";
 import { useContext, useEffect } from "react";
-import openModalContext from "../context/openModalContext";
+import openModalContext from "../../context/openModalContext";
 import { FaTimes } from "react-icons/fa";
 import { useCookies } from "react-cookie";
-import Carousel from "./Carosal";
+import Carousel from "./Carousel";
 
 const WorkCardModal = () => {
   const {

@@ -1,11 +1,11 @@
-import "../css/FormStyle.css";
-import "../css/Loading.css";
+import "../../css/FormStyle.css";
+import "../../css/Loading.css";
 import React, { useState } from "react";
-import SuccessMsg from "./SuccessMsg";
-import ErrorMsg from "./ErrorMsg";
+import SuccessMsg from "../../components/SuccessMsg";
+import ErrorMsg from "../../components/ErrorMsg";
 import { FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { makePOSTRequest } from "../utils/serverHerlper";
+import { makePOSTRequest } from "../../utils/serverHerlper";
 
 const Form = () => {
   const [success, setSuccess] = useState("");

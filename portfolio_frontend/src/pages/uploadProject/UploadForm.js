@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import "../css/FormStyle.css";
-import { makePOSTRequest } from "../utils/serverHerlper";
+import "../../css/FormStyle.css";
+import { makePOSTRequest } from "../../utils/serverHerlper";
 import { useNavigate } from "react-router-dom";
-import UploadWidget from "./UploadWidget";
-import ErrorMsg from "./ErrorMsg";
-import SuccessMsg from "./SuccessMsg";
-import { FaDumpster, FaSpinner } from "react-icons/fa";
+import ErrorMsg from "../../components/ErrorMsg";
+import SuccessMsg from "../../components/SuccessMsg";
+import { FaSpinner } from "react-icons/fa";
+import ThumnailsHandle from "../../components/ThumnailsHandle";
 
 const UploadForm = () => {
   const [title, setTitle] = useState("");
-  // const [thumbnail, setThumbnail] = useState("");
   const [text, setText] = useState("");
   const [view, setView] = useState("");
   const [source, setSource] = useState("");
@@ -66,12 +65,7 @@ const UploadForm = () => {
     setSuccess("");
     setError("");
   };
-  const handleImgDelete = (index) => {
-    const updatedThumbnails = [...imgUrls];
-    updatedThumbnails.splice(index, 1);
-    // setOneProject({ ...item, thumbnails: updatedThumbnails });
-    setImgUrls(updatedThumbnails)
-  };
+
 
   return (
     <div className="upload-container">
@@ -88,21 +82,11 @@ const UploadForm = () => {
         />
 
         <label htmlFor="thumbnail">Thumbnails </label>
-        {/* {imgUrls && <img src={imgUrl} alt={imgUrl} className="thumbnail-img" />} */}
-        {/* {imgUrls.map((url, index) => (
-            <img key={index} src={url} alt={`Thumbnail ${index}`} className="thumbnail-img" />
-          ))} */}
-        <div className="project-edit-img-container">
-          {imgUrls.map((url, index) => (
-            <div className="edit-img-container" key={index}>
-              <img src={url} alt={url} className="thumbnail-img" />
-              <div className="edit-delete-btn" onClick={() => handleImgDelete(index)}><FaDumpster /></div>
-            </div>
-          ))}
-        </div>
-        {/* <UploadWidget setUrl={setImgUrl} /> */}
-        <UploadWidget setUrl={(url) => setImgUrls([...imgUrls, url])} />
-
+        <ThumnailsHandle
+          thumbnails={imgUrls}
+          setThumbnails={setImgUrls}
+          setUploadedFileName={""}
+        />
         <label htmlFor="view">View Url </label>
         <input
           type="text"

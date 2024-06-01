@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/carouselStyle.css'; // Import your custom CSS for styling
+import './carouselStyle.css'; 
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 const Carousel = ({ images, showBtn = true }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

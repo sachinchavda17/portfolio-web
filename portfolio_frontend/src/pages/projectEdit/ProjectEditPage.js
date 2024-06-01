@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import HeroImg2 from "../components/HeroImg2";
-import SingleProjectEdit from "../components/SingleProjectEdit.js";
+import Navbar from "../../components/Navbar.js";
+import Footer from "../../components/Footer.js";
+import HeroImg2 from "../../components/HeroImg2.js";
+import SingleProjectEdit from "./SingleProjectEdit.js";
 const ProjectEdit = () => {
   return (
     <div>

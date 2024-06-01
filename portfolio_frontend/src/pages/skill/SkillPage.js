@@ -1,9 +1,9 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Skills from '../components/Skills'
-import HeroImg2 from '../components/HeroImg2'
-const Skill = () => {
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
+import Skills from './Skills'
+import HeroImg2 from '../../components/HeroImg2'
+const SkillPage = () => {
   return (
     <div>
       <Navbar />
@@ -15,4 +15,4 @@ const Skill = () => {
   )
 }
 
-export default Skill
+export default SkillPage

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "../css/AboutContentStyle.css";
+import "./AboutContentStyle.css";
 import React from "react";
-import AboutImg from "../assets/About-img.jpg";
+import AboutImg from "../../assets/About-img.jpg";
 
 const AboutContent = () => {
   return (
