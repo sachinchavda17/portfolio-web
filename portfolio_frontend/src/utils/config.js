@@ -3,4 +3,4 @@ export const GithubRepo =  process.env.REACT_APP_GITHUB_REPOSITORY
 export const backendUrl =  process.env.REACT_APP_BACKEND_URL
 // export const backendUrl =  "http://localhost:8000"
 
-export const RESUME_URL =  "https://drive.google.com/file/d/1XU0U7qlU1HMeT5yKafYnCmfcYC_sWKYR/view?usp=sharing"
+export const RESUME_URL =  "https://sachin-resume.my.canva.site"
