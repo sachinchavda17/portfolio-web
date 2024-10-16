@@ -11,6 +11,8 @@ router.post("/send-email", async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
+    if(!process.env.SMTP_PASSWORD){
+      res.status(403).send({ err: "Sorry its look like admin removed Thier email." });
     const transporter = nodemailer.createTransport({
       service: "gmail",
       port: 587,
