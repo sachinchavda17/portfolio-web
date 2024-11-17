@@ -2,7 +2,7 @@
     bottom: 0;
     position: fixed;
     color: #fff;
-    background: #000;
+    background: red;
     padding: 1rem 0;
     z-index: 10;
     display: flex;
