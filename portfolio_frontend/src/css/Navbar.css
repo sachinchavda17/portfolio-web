@@ -42,10 +42,44 @@ color: #a337ff;
   font-weight: 500;
   padding-bottom: .5rem  ;
 }
-.nav-menu a:hover{
+.nav-menu a {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
   color: #a337ff;
-  border-bottom: 1px solid #a337ff;
-  padding-bottom: .2rem ;
+}
+
+.nav-menu a:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #a337ff;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-menu a:hover:after,
+.nav-menu a.active:after {
+  width: 100%;
+  animation: activeLink 0.3s ease-in-out;
+}
+
+.nav-menu a.active {
+  font-weight: 600;
+}
+
+@keyframes activeLink {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .hamburger {
