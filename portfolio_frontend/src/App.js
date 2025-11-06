@@ -26,6 +26,7 @@ function App() {
   const [source, setSource] = useState("");
   const [projectId, setProjectId] = useState("");
   const [usedLang, setUsedLang] = useState([]);
+  const [isPinned, setIsPinned] = useState(false);
 
   const [isOnline, setIsOnline] = useState(window.navigator.onLine);
   document.addEventListener("contextmenu", (e) => {
@@ -77,6 +78,8 @@ function App() {
     setProjectId,
     usedLang,
     setUsedLang,
+    isPinned,
+    setIsPinned,
   };
   return (
     <>

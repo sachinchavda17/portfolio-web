@@ -17,6 +17,8 @@ const openModalContext = createContext({
   setProjectId: (projectId) => {},
   usedLang: null,
   setUsedLang: (usedLang) => {},
+  isPinned: null,
+  setIsPinned: (isPinned) => {},
 });
 
 export default openModalContext;

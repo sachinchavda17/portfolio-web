@@ -12,9 +12,10 @@ const UploadForm = () => {
   const [text, setText] = useState("");
   const [view, setView] = useState("");
   const [source, setSource] = useState("");
-  const [imgUrls, setImgUrls] = useState(
-    ["https://res.cloudinary.com/dbm00gxt1/image/upload/v1707214230/xscspg4gdvkminmcpvyq.jpg"]
-  );
+  const [isPinned, setIsPinned] = useState(false);
+  const [imgUrls, setImgUrls] = useState([
+    "https://res.cloudinary.com/dbm00gxt1/image/upload/v1707214230/xscspg4gdvkminmcpvyq.jpg",
+  ]);
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -32,14 +33,23 @@ const UploadForm = () => {
   const submitProject = async () => {
     try {
       setLoading(true);
-      const data = { title, thumbnails: imgUrls, text, view, source, usedLang };
+      const data = {
+        title,
+        thumbnails: imgUrls,
+        text,
+        view,
+        source,
+        usedLang,
+        isPinned,
+      };
       if (
         !data.title ||
         data.thumbnails.length === 0 ||
         !data.text ||
         !data.view ||
         !data.source ||
-        !data.usedLang
+        !data.usedLang ||
+        !data.isPinned
       ) {
         setError("All fields are required!");
         return;
@@ -65,7 +75,6 @@ const UploadForm = () => {
     setSuccess("");
     setError("");
   };
-
 
   return (
     <div className="upload-container">
@@ -119,6 +128,17 @@ const UploadForm = () => {
             setText(e.target.value);
           }}
         />
+        <div className="isPinned">
+          <label htmlFor="isPinned">Pin Project </label>
+          <input
+            type="checkbox"
+            name="isPinned"
+            checked={isPinned}
+            onChange={(e) => {
+              setIsPinned(e.target.checked);
+            }}
+          />
+        </div>
 
         <label htmlFor="lang">Languages Used:</label>
         <div className="lang-list">

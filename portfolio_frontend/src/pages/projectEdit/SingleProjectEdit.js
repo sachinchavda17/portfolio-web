@@ -16,6 +16,7 @@ const SingleProjectEdit = () => {
   const [view, setView] = useState("");
   const [source, setSource] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [isPinned, setIsPinned] = useState(false);
   const [uploadedFileName, setUploadedFileName] = useState("");
   const [oneProject, setOneProject] = useState([]);
   const [usedLang, setUsedLang] = useState([]);
@@ -68,6 +69,7 @@ const SingleProjectEdit = () => {
         if (response.data.length > 0 && response.data[0].thumbnails) {
           setThumbnailForThis(response.data[0].thumbnails);
         }
+        setIsPinned(response.data[0].isPinned);
       } catch (err) {
         setError("Error fetching project data");
       } finally {
@@ -95,6 +97,7 @@ const SingleProjectEdit = () => {
           usedLang.length > 0
             ? usedLang.filter((lang) => lang.trim() !== "")
             : item.usedLang || [],
+        isPinned,
       };
 
       const response = await makePOSTRequest(
@@ -215,6 +218,19 @@ const SingleProjectEdit = () => {
               value={source === "" ? item.source || "" : source}
               onChange={(e) => setSource(e.target.value)}
             />
+
+            <div className="isPinned">
+              <label htmlFor="isPinned">Pin Project </label>
+              <input
+                type="checkbox"
+                name="isPinned"
+                checked={isPinned}
+                onChange={(e) => {
+                  setIsPinned(e.target.checked);
+                }}
+              />
+            </div>
+
             <label htmlFor="text">Edit Text </label>
             <textarea
               name="text"

@@ -64,6 +64,7 @@ const Work = () => {
                 source={val.source}
                 projectId={val._id}
                 usedLang={val.usedLang}
+                isPinned={val.isPinned}
               />
             );
           })}
