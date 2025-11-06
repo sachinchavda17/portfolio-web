@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import openModalContext from "../../context/openModalContext";
 import Carousel from "./Carousel";
+import { BsFillPinAngleFill } from "react-icons/bs";
 
 const WorkCard = ({
   view,
@@ -12,6 +13,7 @@ const WorkCard = ({
   text,
   projectId,
   usedLang,
+  isPinned,
 }) => {
   // const [cookie, setCookie] = useCookies(["email"]);
   const [showFullText, setShowFullText] = useState(false);
@@ -25,6 +27,7 @@ const WorkCard = ({
     setView,
     setProjectId,
     setUsedLang,
+    setIsPinned,
   } = useContext(openModalContext);
 
   const toggleText = () => {
@@ -70,10 +73,13 @@ const WorkCard = ({
         openModal(view, thumbnails, source, title, text, projectId, usedLang)
       }
     >
-      <div>
-        {/* <img src={thumbnail} alt={thumbnail} /> */}
-        <Carousel images={thumbnails} showBtn={false}/>
-
+      <div className="project-card-header">
+        <Carousel images={thumbnails} showBtn={false} />
+        {isPinned && (
+          <div className="pinned-badge">
+            <BsFillPinAngleFill className="pin-icon" />
+          </div>
+        )}
       </div>
       <h2 className="project-title">{title}</h2>
       <div className="pro-details">

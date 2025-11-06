@@ -9,6 +9,10 @@ const Project = new mongoose.Schema({
     type: Array,
     required: true,
   },
+  isPinned: {
+    type: Boolean,
+    default: false,
+  },
   text: {
     type: String,
     required: true,

@@ -3,14 +3,14 @@ const router = express.Router();
 const ProjectModel = require("../models/ProjectModel");
 
 router.post("/create", async (req, res) => {
-  const { title, thumbnails, text, view, source, usedLang } = req.body;
-  if (!title || !thumbnails || !text || !view || !source || !usedLang) {
+  const { title, thumbnails, text, view, source, usedLang , isPinned} = req.body;
+  if (!title || !thumbnails || !text || !view || !source || !usedLang || !isPinned) {
     return res
       .status(301)
       .json({ err: "Insufficient details to create Project. " });
   }
 
-  const projectDetails = { title, thumbnails, text, view, source, usedLang };
+  const projectDetails = { title, thumbnails, text, view, source, usedLang, isPinned };
   // const createProject = await ProjectModel.create(projectDetails)
   try {
     await ProjectModel.insertMany(projectDetails);
@@ -23,8 +23,12 @@ router.post("/create", async (req, res) => {
 });
 
 router.get("/get/allproject", async (req, res) => {
-  const proj = await ProjectModel.find({});
-  return res.status(200).json({ data: proj });
+  try {
+    const projects = await ProjectModel.find({}).sort({ isPinned: -1 });
+    return res.status(200).json({ data: projects });
+  } catch (error) {
+    return res.status(500).json({ error: "Error fetching projects" });
+  }
 });
 
 router.get("/get/singleproject/:projectId", async (req, res) => {
@@ -35,8 +39,8 @@ router.get("/get/singleproject/:projectId", async (req, res) => {
 
 router.post("/update/:projectId", async (req, res) => {
   const { projectId } = req.params;
-  const { title, thumbnails, text, view, source ,usedLang} = req.body;
-  const projectDetails = { title, thumbnails, text, view, source, usedLang };
+  const { title, thumbnails, text, view, source ,usedLang, isPinned} = req.body;
+  const projectDetails = { title, thumbnails, text, view, source, usedLang, isPinned };
   try {
     await ProjectModel.updateOne({ _id: projectId }, projectDetails);
     return res.status(200).json({ message: "Successfully Updated." });

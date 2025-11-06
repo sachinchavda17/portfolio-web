@@ -24,3 +24,51 @@ textarea {
   color: #f4f4f4;
 }
 
+.isPinned {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: .5rem;
+}
+
+.isPinned input[type="checkbox"] {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  -webkit-appearance: none;
+  background: #333;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.isPinned input:checked[type="checkbox"] {
+  background: #a337ff;
+}
+
+.isPinned input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 2.5px;
+  left: 3px;
+  background: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.isPinned input:checked[type="checkbox"]::before {
+  left: 27px;
+}
+
+.isPinned label {
+  margin-bottom: 0;
+}
