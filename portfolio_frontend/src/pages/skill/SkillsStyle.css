@@ -5,6 +5,7 @@
   align-items: center;
   position: relative;
   z-index: 1;
+  margin-bottom: 4rem;
 }
 
 .wrapper {
@@ -21,6 +22,10 @@
 .title {
   text-align: center;
   padding: 4rem 0 2rem 0;
+}
+
+.title span {
+  color: #a337ff;
 }
 
 .desc {

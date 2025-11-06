@@ -249,9 +249,8 @@ const SingleProjectEdit = () => {
             )}
             <div className="edit-btns">
               <button
-                style={{ backgroundColor: "#28a745" }}
                 type="submit"
-                className="btn"
+                className="btn btn-success"
                 onClick={submitProject}
                 disabled={loadingUpdate}
               >
@@ -268,9 +267,8 @@ const SingleProjectEdit = () => {
                 )}
               </button>
               <button
-                style={{ backgroundColor: "red" }}
                 type="delete"
-                className="btn"
+                className="btn btn-danger"
                 onClick={deleteProject}
                 disabled={loadingDelete}
               >

@@ -1,13 +1,14 @@
-import React from 'react'
-import "./SkillsStyle.css"
-import skillsData from '../../data/SkillData';
+import React from "react";
+import "./SkillsStyle.css";
+import skillsData from "../../data/SkillData";
 
 const Skills = () => {
-
   return (
     <div className={"container"} id="Skills">
       <div className={"wrapper"}>
-        <h1 className={"title"}>Skills</h1>
+        <h1 className={"title"}>
+          Skills <span>& Technologies</span>
+        </h1>
         <div className={"skillsContainer"}>
           {skillsData.map((skill, index) => (
             <div className={"skill"} key={`skill-${index}`}>
@@ -15,7 +16,11 @@ const Skills = () => {
               <div className={"skillList"}>
                 {skill.skills.map((item, index_x) => (
                   <div className={"skillItem"} key={`skill-x-${index_x}`}>
-                    <img src={item.image} alt={item.name} className={"skillImage"} />
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className={"skillImage"}
+                    />
                     &nbsp; {item.name}
                   </div>
                 ))}
