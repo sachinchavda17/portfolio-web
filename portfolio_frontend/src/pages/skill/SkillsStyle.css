@@ -54,8 +54,6 @@
   box-shadow: 0.4rem 0.4rem 1rem #4c4848 inset, -0.4rem -0.4rem 1rem #333 inset;
   transform: scale(0.95);
   /* box-shadow: #a337ff 0 0 100px; */
-
-
 }
 
 .skillTitle {
@@ -91,19 +89,18 @@
   height: 24px;
 }
 
-
-
-@media screen and (max-width:600px) {
-  .skill{
+@media screen and (max-width: 600px) {
+  .skill {
     width: 90%;
   }
   .skillTitle {
-    font-size: 25px;;
+    font-size: 25px;
   }
   .skillItem {
-    font-size: 14px;}
-    .skillImage {
-      width: 20px;
-      height: 20px;
-    }
+    font-size: 14px;
+  }
+  .skillImage {
+    width: 20px;
+    height: 20px;
+  }
 }
