@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../css/Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useCookies } from "react-cookie";
 import { GithubRepo } from "../utils/config";
 
 const Navbar = () => {
+  const location = useLocation();
   const [cookie, setCookie, removeCookie] = useCookies(["email"]);
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
@@ -36,16 +37,16 @@ const Navbar = () => {
       </Link>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
         <li>
-          <Link to="/project">Project</Link>
+          <Link to="/project" className={location.pathname === '/project' ? 'active' : ''}>Project</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
         </li>
         <li>
-          <Link to="/skills">Skills</Link>
+          <Link to="/skills" className={location.pathname === '/skills' ? 'active' : ''}>Skills</Link>
         </li>
         <li>
           <Link to={GithubRepo} target="_blank">Github</Link>
