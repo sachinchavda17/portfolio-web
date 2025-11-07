@@ -11,6 +11,7 @@ import { useCookies } from "react-cookie";
 import ProjectEditPage from "./pages/projectEdit/ProjectEditPage"
 import SkillPage from "./pages/skill/SkillPage"
 import WorkCardModal from "./pages/projects/WorkCardModal"
+import ExperiencePage from "./pages/experience/ExperiencePage"
 import openModalContext from "./context/openModalContext";
 import IsNetworkConnect from "./components/IsNetworkConnect";
 import toast, { Toaster } from 'react-hot-toast';
@@ -92,7 +93,8 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/project" element={<ProjectPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/Skills" element={<SkillPage />} />
+          <Route path="/skills" element={<SkillPage />} />
+          <Route path="/experience" element={<ExperiencePage />} />
           {cookie.email && <Route path="/upload" element={<UploadProjectPage />} />}
           {cookie.email && (
             <Route path="/edit/:projectId" element={<ProjectEditPage />} />

@@ -1,0 +1,276 @@
+/* In ExperiencePage.css */
+:root {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-color: #ffffff;
+  --accent-color: #bb86fc;
+  --accent-hover: #9a67ea;
+  --timeline-line: #333;
+  --skill-bg: #333;
+  --card-border: #333;
+}
+
+.experience-page {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+.experience-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--accent-color);
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), transparent);
+  border-radius: 2px;
+}
+
+/* Timeline Styles */
+.timeline {
+  position: relative;
+  padding: 2rem 0 2rem 50px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px; /* Slightly thicker line */
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent-color),
+    var(--accent-color),
+    var(--accent-color),
+    transparent
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(187, 134, 252, 0.5); /* Soft glow effect */
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+  padding-left: 30px;
+}
+
+.timeline-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  left: -6px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid var(--accent-color);
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--accent-color),
+    0 0 15px rgba(187, 134, 252, 0.5);
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--accent-hover),
+    0 0 20px rgba(187, 134, 252, 0.8);
+  background: var(--accent-hover);
+  border-color: var(--bg-color);
+}
+
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  width: 20px;
+  height: 2px;
+  background: var(--accent-color);
+  opacity: 0.5; /* Slightly transparent by default */
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.timeline-item:hover .timeline-content::before {
+  width: 30px;
+  opacity: 1;
+  background: var(--accent-hover);
+  box-shadow: 0 0 8px rgba(187, 134, 252, 0.5);
+}
+
+.timeline-content {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  border-left: 4px solid var(--accent-color);
+  margin-left: 10px;
+  width: 100%;
+}
+
+.timeline-content:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-hover);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.timeline-content h3 {
+  color: var(--accent-color);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+.company {
+  color: #aaa;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.duration {
+  display: inline-block;
+  background: rgba(187, 134, 252, 0.1);
+  color: var(--accent-color);
+  padding: 0.3rem 1rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.responsibilities {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.responsibilities li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.responsibilities li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.skill-tag {
+  background: var(--skill-bg);
+  color: #fff;
+  padding: 0.3rem 1rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.skill-tag:hover {
+  background: var(--accent-color);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.timeline-item {
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.timeline-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.timeline-item:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.timeline-item:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .experience-container {
+    padding: 1.5rem;
+  }
+
+  .timeline {
+    padding-left: 30px;
+  }
+
+  .timeline-dot {
+    width: 14px;
+    height: 14px;
+    left: -7px;
+  }
+
+  .timeline-content {
+    padding: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(187, 134, 252, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(187, 134, 252, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(187, 134, 252, 0);
+  }
+}
+
+.timeline-item:first-child .timeline-dot {
+  animation: pulse 2s infinite;
+}

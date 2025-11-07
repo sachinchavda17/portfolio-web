@@ -49,6 +49,9 @@ const Navbar = () => {
           <Link to="/skills" className={location.pathname === '/skills' ? 'active' : ''}>Skills</Link>
         </li>
         <li>
+          <Link to="/experience" className={location.pathname === '/experience' ? 'active' : ''}>Experience</Link>
+        </li>
+        <li>
           <Link to={GithubRepo} target="_blank">Github</Link>
         </li>
         {cookie.email && (
