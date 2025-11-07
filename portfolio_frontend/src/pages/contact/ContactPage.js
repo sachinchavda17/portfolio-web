@@ -3,13 +3,14 @@ import Navbar from "../../components/Navbar"
 import Footer from '../../components/Footer'
 import HeroImg2 from '../../components/HeroImg2'
 import ContactForm from "./ContactForm"
+import contactImg from '../../assets/contact-us.jpg'
 
 function Contact() {
   return (
     <div>
       <Navbar/>
       {/* <HeroImg2 heading="CONTACT" text="Lets have a chat" /> */}
-      <HeroImg2 heading="CONTACT" text="Feel free to reach out to me for any questions or opportunities!" />
+      <HeroImg2 heading="CONTACT" text="Feel free to reach out to me for any questions or opportunities!" img={contactImg}/>
       <ContactForm/>
       <Footer/>
     </div>

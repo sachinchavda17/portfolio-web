@@ -5,21 +5,17 @@ import HeroImg2 from "../../components/HeroImg2";
 import Work from "./Work";
 import WorkCardModal from "./WorkCardModal";
 import openModalContext from "../../context/openModalContext";
+import projectImg from "../../assets/project.jpg";
 
 function Project() {
   const { openModal } = useContext(openModalContext);
   return (
     <div>
-      {/* {openModal ? <WorkCardModal /> :
-        ( */}
-      <>
-        <Navbar />
-        <HeroImg2 heading="PROJECTS" text="Some of my recent work." />
-        <Work />
-        <Footer />
-        {openModal && <WorkCardModal />}
-      </>
-      {/* )} */}
+      <Navbar />
+      <HeroImg2 heading="PROJECTS" text="Some of my recent work." img={projectImg}/>
+      <Work />
+      <Footer />
+      {openModal && <WorkCardModal />}
     </div>
   );
 }
