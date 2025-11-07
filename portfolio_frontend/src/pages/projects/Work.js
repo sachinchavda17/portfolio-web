@@ -3,7 +3,7 @@ import "../../css/Loading.css";
 import React, { useEffect, useState } from "react";
 import WorkCard from "./WorkCard";
 import { makeGETRequest } from "../../utils/serverHerlper";
-import { FaSpinner } from "react-icons/fa";
+import { FaSpinner, FaLaptopCode } from "react-icons/fa";
 import ErrorMsg from "../../components/ErrorMsg";
 
 const Work = () => {
@@ -34,7 +34,9 @@ const Work = () => {
 
   return (
     <div className="work-container">
-      <h1 className="project-heading">Projects</h1>
+      <h2 className="section-title">
+        <FaLaptopCode className="section-icon" /> Featured Projects
+      </h2>
       {loading ? (
         <div className="loading-box">
           <FaSpinner

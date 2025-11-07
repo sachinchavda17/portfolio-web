@@ -1,14 +1,15 @@
 import React from "react";
 import "./SkillsStyle.css";
 import skillsData from "../../data/SkillData";
+import { FaCode } from "react-icons/fa";
 
 const Skills = () => {
   return (
     <div className={"container"} id="Skills">
-      <div className={"wrapper"}>
-        <h1 className={"title"}>
-          Skills <span>& Technologies</span>
-        </h1>
+      <div className="wrapper">
+        <h2 className="section-title">
+          <FaCode className="section-icon" /> Skills & Technologies
+        </h2>
         <div className={"skillsContainer"}>
           {skillsData.map((skill, index) => (
             <div className={"skill"} key={`skill-${index}`}>
